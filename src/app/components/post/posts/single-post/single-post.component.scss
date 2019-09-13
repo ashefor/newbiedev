@@ -1,0 +1,145 @@
+$padding1rem: 1rem;
+
+.mb1_5{
+    margin-bottom: $padding1rem * 1.5
+}
+.mb2{
+    margin-bottom: $padding1rem * 2
+}
+.post_wrapper{
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post-header{
+    text-align: center;
+
+    h1{
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        margin: 0 auto 1rem;
+    }
+    .post-author{
+        margin-bottom: 1.5rem
+    }
+}
+mat-chip-list{
+    .mat-chip-list-wrapper{
+        justify-content: center !important
+    }
+}
+.mat-chip{
+    margin: 0 .5rem .5rem 0;
+    padding: 4px 12px;
+    border-radius: 1000px;
+    font-weight: 500;
+}
+.body-text {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    font-size: 20px;
+    line-height: 30px;  
+
+    .content{
+        text-align: justify
+    }
+}
+.like_btn{
+    border: 1px solid #e0e0e0;
+    background: #f7f9fa;
+    cursor: pointer;
+    line-height: 1;
+    border: 1px solid #e0e0e0;
+    outline: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border-radius: 40px;
+    padding: .5rem;
+
+    img{
+        width: 20px;
+        height: 20px;
+    }
+    span{
+        font-size: 1rem;
+        font-weight: 600;
+        color: #4d4d4d;
+        display: inline-block;
+        margin-left: 4px;
+        color: blue;
+        vertical-align: middle;
+    }
+}
+.actionBtn{
+    img{
+        width: 20px;
+        height: 20px;
+    }
+}
+.postBtns{
+    display: flex;
+
+    .rightbtns{
+        margin-left: auto
+    }
+}
+.about_author{
+    width: 85%;
+    margin: auto;
+    display: flex;
+
+    .author_avatar{
+        margin: auto;
+
+        img{
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+        }
+    }
+    .author_deets{
+        margin-left: .5rem;
+
+        h4{
+            margin: 13px 0 0;
+            font-size: 28px;
+            font-weight: 400;
+
+            a{
+                color: unset;
+                text-decoration: none
+            }
+            strong{
+                vertical-align: middle
+            }
+
+            .follow-btn{
+                background-color: transparent;
+                border: 1px solid #2962ff;
+                font-size: 13px;
+                color: #ffffff;
+                background-color: #2962ff;
+                outline: 0;
+                border-radius: 10px;
+                margin-left: 1rem;
+                text-transform: uppercase;
+                font-size: .75rem;
+            }
+        }
+
+        p{
+            margin: 2px 0;
+            padding-left: 0;
+            line-height: 22px;
+            font-size: 1rem
+        }
+        .social{
+            font-size: 0.85em;
+
+            a{
+                color: unset;
+                text-decoration: none
+            }
+        }
+    }
+}

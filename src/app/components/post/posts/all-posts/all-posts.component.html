@@ -1,0 +1,57 @@
+<section>
+    <div class="wrapper">
+        <div class="allposts">
+            <div>
+                well
+            </div>
+            <div class="divbody">
+                <mat-card class="example-card" *ngFor="let post of posts; let i = index">
+
+                    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                    <!-- <h3>{{post.title}}</h3> -->
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            <a [routerLink]="['/posts', post._id]">
+                                    {{post.title}} <small>{{result[i]}} min read </small>
+                            </a>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <p>{{post.author}}</p>
+                            <p>·</p>
+                            <p>{{post.date | timeAgo}}</p>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let tag of alltags[i]">{{tag}}</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div>
+                            <button mat-button class="like_btn">
+                                <img src="../../../../../assets/thumbs.png" alt="" srcset="">
+                                <span>{{post.meta.likes}}</span>
+                            </button>
+                            <button mat-button class="like_btn">
+                                <img src="../../../../assets/comment.png" alt="">
+                                <span>{{post.comments.length}}</span>
+                            </button>
+                        </div>
+                        <div class="rightbtns">
+                            <button mat-button class="actionBtn">
+                                <img src="../../../../../assets/bookmark-white.png" alt="" srcset="">
+                            </button>
+                            <button mat-button class="actionBtn">
+                                <img src="../../../../../assets/share.png" alt="">
+                            </button>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div>
+                wepl
+            </div>
+        </div>
+    </div>
+</section>

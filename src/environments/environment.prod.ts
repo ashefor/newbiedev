@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  postsURL: 'http://localhost:5000/api/posts'
 };
