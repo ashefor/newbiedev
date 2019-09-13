@@ -10,6 +10,10 @@ $padding1rem: 1rem;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+
+    button{
+        outline: none
+    }
 }
 .post-header{
     display: flex;

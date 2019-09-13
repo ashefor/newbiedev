@@ -18,18 +18,16 @@
                 </div>
                 <div>
                     <p class="s" title="{{post.date | date}}">
-                        {{post.date | timeAgo }}</p>
+                        Published <strong>{{post.date | timeAgo }}</strong></p>
                 </div>
-                <div class="mb2">
+                <div *ngIf="alltags && alltags.length > 0">
                     <mat-chip class="mat-chip" *ngFor="let tag of alltags">{{tag}}</mat-chip>
                 </div>
             </div>
             <div class="post-content">
                 <div class="body-text content">
-                    <!-- <div class="content texttrunc" [innerHTML]="post.content" #postBody>
-                    </div> -->
                     <md-editor name="Content" [(ngModel)]="post.content" [mode]="mode" [options]="options"
-                        [height]="height" [mode]="mode" [options]="options" required>
+                        [height]="height" [mode]="mode" [options]="options">
                     </md-editor>
                     <div class="postBtns">
                         <div>
