@@ -12,7 +12,7 @@ import { MarkdownOptions } from 'src/app/models/markdown.model';
 })
 export class SinglePostComponent implements OnInit {
   post: posts;
-  showpost;
+  showpost:boolean;
   nooflikes;
   hasLiked;
   hasLikedThis;

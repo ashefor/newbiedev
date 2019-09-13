@@ -1,1 +1,10 @@
-<p>edit-post works!</p>
+<md-editor name="Content" 
+  [upload]="doUpload" 
+  [preRender]="preRenderFunc" 
+  [(ngModel)]="content" 
+  [height]="'200px'" 
+  [mode]="mode" 
+  [options]="options" 
+  required 
+  maxlength="500">
+</md-editor>

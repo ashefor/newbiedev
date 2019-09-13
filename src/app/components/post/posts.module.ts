@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AllCommentsComponent } from './comments/all-comments/all-comments.component';
-import { ReplyCommentComponent } from './comments/reply-comment/reply-comment.component';
 import { EditCommentComponent } from './comments/edit-comment/edit-comment.component';
 import { CommentRepliesComponent } from './replies/comment-replies/comment-replies.component';
 import { EditCommentReplyComponent } from './replies/edit-comment-reply/edit-comment-reply.component';
@@ -14,13 +13,13 @@ import { postRoutes } from './posts.route'
 import { SharedModule } from '../shared/shared.module';
 import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { CreateCommentComponent } from './comments/create-comment/create-comment.component';
 
 
 
 @NgModule({
   declarations: [
     AllCommentsComponent, 
-    ReplyCommentComponent, 
     EditCommentComponent, 
     CommentRepliesComponent, 
     EditCommentReplyComponent, 
@@ -29,7 +28,8 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     SinglePostComponent, 
     CreatePostComponent,
     TimeAgoPipe,
-    EditPostComponent
+    EditPostComponent,
+    CreateCommentComponent
   ],
   imports: [
     CommonModule,
