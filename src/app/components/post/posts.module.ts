@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { postRoutes } from './posts.route'
 import { SharedModule } from '../shared/shared.module';
 import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
 
 
@@ -27,7 +28,8 @@ import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
     AllPostsComponent, 
     SinglePostComponent, 
     CreatePostComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    EditPostComponent
   ],
   imports: [
     CommonModule,

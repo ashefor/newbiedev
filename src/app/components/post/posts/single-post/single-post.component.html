@@ -7,6 +7,14 @@
                 </div>
                 <div class="post-author">
                     <p>{{post.author}}</p>
+                    <div class="edit_del_btns">
+                        <a class="actionBtn edit_icon" title="Edit" [routerLink]="['/posts', post._id, 'edit']">
+                            <img src="../../../../assets/edit.png" alt="edit">
+                        </a>
+                        <a class="actionBtn edit_icon" (click)="deleteThisPost(post)" title="Delete">
+                            <img src="../../../../assets/trash.png" alt="delete">
+                        </a>
+                    </div>
                 </div>
                 <div>
                     <p class="s" title="{{post.date | date}}">
@@ -18,8 +26,11 @@
             </div>
             <div class="post-content">
                 <div class="body-text content">
-                    <div class="content texttrunc" [innerHTML]="post.content" #postBody>
-                    </div>
+                    <!-- <div class="content texttrunc" [innerHTML]="post.content" #postBody>
+                    </div> -->
+                    <md-editor name="Content" [(ngModel)]="post.content" [mode]="mode" [options]="options"
+                        [height]="height" [mode]="mode" [options]="options" required>
+                    </md-editor>
                     <div class="postBtns">
                         <div>
                             <button mat-button class="like_btn" (click)="likePost(post._id)"
@@ -51,7 +62,7 @@
                     <div class="author_deets">
                         <h4>
                             <a href="#">
-                                    <strong>John Smith</strong> 
+                                <strong>John Smith</strong>
                             </a>
                             <button mat-button class="follow-btn">
                                 <span class="icon is-small"><i class="fas fa-user-plus"></i></span>
@@ -67,7 +78,7 @@
                             sectetur adipiscing elit.
                         </p>
                         <p class="social">
-                           <a href="#"> @anonymous</a>
+                            <a href="#"> @anonymous</a>
                         </p>
                     </div>
                 </div>

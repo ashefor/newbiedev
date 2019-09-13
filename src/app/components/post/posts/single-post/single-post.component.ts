@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 import { posts } from 'src/app/models/post.model';
+import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
+import { MarkdownOptions } from 'src/app/models/markdown.model';
 
 @Component({
   selector: 'app-single-post',
@@ -16,8 +18,12 @@ export class SinglePostComponent implements OnInit {
   hasLikedThis;
   hasLikedThis2;
   alltags = []
-  constructor(private router: ActivatedRoute, private service: PostsService) { }
-
+  constructor(private router: ActivatedRoute, private service: PostsService, private toastr: ToastrNotificationService, private route: Router) { }
+  public options: MarkdownOptions = {
+    enablePreviewContentClick: true,
+  }
+  public mode: string = 'preview';
+  public height: string = "auto"
   ngOnInit() {
     this.router.params.subscribe((params: Params)=>{
       this.service.singlePost(params.id).subscribe((data: any)=>{
@@ -26,7 +32,6 @@ export class SinglePostComponent implements OnInit {
           this.post = data;
           this.alltags = data.meta.tags;
           this.nooflikes = data.meta.likes;
-          console.log(this.post)
         }
       })
     })
@@ -35,11 +40,27 @@ export class SinglePostComponent implements OnInit {
   likePost(id) {
     if (!this.hasLiked) {
       this.hasLiked = true;
-      this.hasLikedThis = `rgba(33,150,243,.4)`;
-      this.hasLikedThis2 = `rgba(33,150,243,.1)`;
       this.nooflikes += 1
       this.service.likeThisPost(id).subscribe((data: any) => {
-        alert('liked successfully')
+        if(data){
+          this.hasLikedThis = `rgba(33,150,243,.4)`;
+          this.hasLikedThis2 = `rgba(33,150,243,.1)`;
+          this.toastr.successToaster('Liked Successfully')
+        }
+      })
+    }
+  }
+
+  deleteThisPost(post: posts) {
+    if (confirm(`Really delete ${post.title}?`)) {
+      this.service.deletePost(post._id).subscribe((data: any) => {
+        if (data) {
+          this.toastr.successToaster(data.message)
+          this.route.navigate(['/posts'])
+        }
+        (error: any) => {
+          console.log(error)
+        }
       })
     }
   }

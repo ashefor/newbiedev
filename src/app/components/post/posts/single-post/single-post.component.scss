@@ -12,7 +12,9 @@ $padding1rem: 1rem;
     margin-right: auto;
 }
 .post-header{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
     h1{
         font-size: 2.4rem;
@@ -21,7 +23,17 @@ $padding1rem: 1rem;
         margin: 0 auto 1rem;
     }
     .post-author{
-        margin-bottom: 1.5rem
+        margin-bottom: 1.5rem;
+        display: flex;
+        p{
+            margin: auto
+        }
+        .edit_del_btns{
+            margin: auto;
+            .edit_icon{
+                margin-left: .5rem
+            }
+        }
     }
 }
 mat-chip-list{
@@ -131,7 +143,8 @@ mat-chip-list{
             margin: 2px 0;
             padding-left: 0;
             line-height: 22px;
-            font-size: 1rem
+            font-size: 1rem;
+            text-align: justify;
         }
         .social{
             font-size: 0.85em;
