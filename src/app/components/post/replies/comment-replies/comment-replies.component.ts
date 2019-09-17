@@ -42,7 +42,6 @@ export class CommentRepliesComponent implements OnInit {
     this.service.editCommentReply(this.postId, this.commentId, this.editReplyId, reply.content).subscribe((data: any)=>{
       if(data){
         this.replies = data.comments[this.commentIndex].replies;
-        // this.ds.sendNewPost(data)
       }
     })
   }
