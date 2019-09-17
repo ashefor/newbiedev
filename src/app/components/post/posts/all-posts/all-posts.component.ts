@@ -19,8 +19,7 @@ export class AllPostsComponent implements OnInit {
   getAllPosts(){
     this.service.getAllPosts().subscribe((data:any)=>{
       if(data){
-        this.posts = data
-        // console.log(this.posts)
+        this.posts = data;
         for (let obj of data) {
           this.readingTime(obj.content)
           this.alltags.push(obj.meta.tags);

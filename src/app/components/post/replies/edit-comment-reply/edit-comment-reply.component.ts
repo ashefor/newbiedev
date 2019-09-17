@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { IReplies } from 'src/app/models/post.model';
+import { MarkdownOptions } from 'src/app/models/markdown.model';
 
 @Component({
   selector: 'app-edit-comment-reply',
@@ -6,10 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-comment-reply.component.scss']
 })
 export class EditCommentReplyComponent implements OnInit {
-
-  constructor() { }
+  editReplyForm: FormGroup;
+  @Input() replyContent;
+  @Output() editThisReply = new EventEmitter()
+  @Output() cancelEditThisReply = new EventEmitter();
+  public option: MarkdownOptions = {
+    hideIcons: ['Image'],
+    enablePreviewContentClick: true,
+    showPreviewPanel: false,
+  }
+  constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.initialiseForm()
   }
-
+  initialiseForm(){
+    this.editReplyForm = this.formbuilder.group({
+      content: [this.replyContent]
+    })
+  }
+  cancel(){
+    this.cancelEditThisReply.emit()
+  }
+  submitEditedReply(formvalue){
+    let reply: IReplies = {
+      content: formvalue.content
+    }
+    this.editThisReply.emit(reply)
+  }
 }

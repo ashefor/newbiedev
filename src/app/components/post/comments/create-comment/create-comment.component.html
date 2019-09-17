@@ -1,12 +1,15 @@
 <div class="field">
+    <p>
+        Leave a comment:
+    </p>
     <form [formGroup]="commentForm">
-        <div>
-            <md-editor formControlName="content" mode="editor" [options]="option" [height]="'50px'">
+        <div style="border: 1px solid">
+            <md-editor formControlName="content" mode="editor" [options]="option" [height]="'200px'">
             </md-editor>
         </div>
-        <div class="buttons is-right b_w">
-            <button class="button is-info" (click)="addThisComment(commentForm.value)" type="submit"
-                [disabled]="commentForm.invalid">Submit</button>
+        <div class="comment_submit">
+            <button class="button" (click)="addThisComment(commentForm.value)" type="submit"
+                [disabled]="commentForm.invalid">Post Comment</button>
         </div>
     </form>
 </div>

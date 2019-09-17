@@ -1,0 +1,35 @@
+h1,h2,h3,h4,h5,h6,p,ul,ol{
+    margin: 0;
+    padding: 0;
+}
+a{
+    cursor: pointer;
+}
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+.commentField{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.actionBtn{
+    img{
+        width: 20px;
+        height: 20px;
+    }
+}
+.replybtn{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 17px;
+    padding: 2px 8px
+}
+.deletebtn{
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    font-size: 17px;
+    padding: 2px 8px
+}

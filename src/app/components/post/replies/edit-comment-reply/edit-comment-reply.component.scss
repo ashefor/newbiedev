@@ -1,0 +1,23 @@
+small{
+    color: #1C9963;
+    a{
+        cursor: pointer;
+    }
+}
+.editReply{
+    margin-top: 1rem;
+    .button{
+        background-color: #1C9963;
+        border-color: #1C9963;
+        color: rgba(255,255,255,1);
+        border-radius: 3px;
+        font-size: 0.90rem;
+        margin-left: 0;
+        font-weight: 600;
+        text-transform: none;
+        width: auto;
+        cursor: pointer;
+        box-shadow: none;
+        padding: 7px 13px;
+    }
+}

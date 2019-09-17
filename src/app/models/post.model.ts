@@ -1,5 +1,5 @@
 export interface posts {
-    _id?: number;
+    _id?: string;
     title: string;
     content: string;
     author?: string;
@@ -14,7 +14,7 @@ export interface posts {
 
 }
 export interface IComments {
-    id?: number,
+    id?: string,
     content: string;
     date?: Date;
     replies?: IReplies[];

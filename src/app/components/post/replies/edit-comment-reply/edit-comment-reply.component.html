@@ -1,1 +1,20 @@
-<p>edit-comment-reply works!</p>
+<div>
+    <div class="field">
+        <p>
+            Edit your reply: <small>
+                <a (click)="cancel()">Cancel edit</a>
+            </small>
+        </p>
+        <form [formGroup]="editReplyForm">
+            <div style="border: 1px solid">
+                <md-editor formControlName="content" mode="editor" [options]="option" [height]="'200px'">
+                </md-editor>
+            </div>
+            <div class="editReply">
+                <a class="button" (click)="submitEditedReply(editReplyForm.value)">
+                    Submit
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

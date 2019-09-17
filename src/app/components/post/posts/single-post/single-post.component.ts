@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
-import { posts } from 'src/app/models/post.model';
+import { posts, IComments } from 'src/app/models/post.model';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
 import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-single-post',
@@ -11,19 +12,22 @@ import { MarkdownOptions } from 'src/app/models/markdown.model';
   styleUrls: ['./single-post.component.scss']
 })
 export class SinglePostComponent implements OnInit {
+  constructor(private router: ActivatedRoute, private service: PostsService, private toastr: ToastrNotificationService, private route: Router) { }
+
   post: posts;
   showpost:boolean;
   nooflikes;
   hasLiked;
   hasLikedThis;
   hasLikedThis2;
-  alltags = []
-  constructor(private router: ActivatedRoute, private service: PostsService, private toastr: ToastrNotificationService, private route: Router) { }
+  alltags = [];
+  resetForm: boolean;
   public options: MarkdownOptions = {
     enablePreviewContentClick: true,
   }
   public mode: string = 'preview';
-  public height: string = "auto"
+  public height: string = "auto";
+  
   ngOnInit() {
     this.router.params.subscribe((params: Params)=>{
       this.service.singlePost(params.id).subscribe((data: any)=>{
@@ -64,4 +68,14 @@ export class SinglePostComponent implements OnInit {
       })
     }
   }
+
+  saveNewComment(comment: IComments){
+    this.service.createComment(this.post._id, comment.content).subscribe((data: any)=>{
+      if(data){
+        this.post = data;
+        this.resetForm = true
+      }
+    })
+  }
+
 }

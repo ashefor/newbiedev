@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { IComments } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-edit-comment',
@@ -6,10 +9,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-comment.component.scss']
 })
 export class EditCommentComponent implements OnInit {
-
-  constructor() { }
+  public option: MarkdownOptions = {
+    hideIcons: ['Image'],
+    enablePreviewContentClick: true,
+    showPreviewPanel: false,
+  }
+  editCommentForm: FormGroup;
+  @Input() commentToEdit;
+  @Output() editComment = new EventEmitter();
+  @Output() cancelEditComment = new EventEmitter()
+  constructor(private formbuilder: FormBuilder) {
+   
+   }
 
   ngOnInit() {
+    this.initialiseForm()
+  }
+  initialiseForm(){
+    this.editCommentForm = this.formbuilder.group({
+      content: [this.commentToEdit]
+    })
+  }
+  cancelCommentEdit(){
+    this.cancelEditComment.emit()
   }
 
+  updateComment(formValue){
+    let comment: IComments = {
+      content: formValue.content
+    }
+    this.editComment.emit(comment)
+  }
 }

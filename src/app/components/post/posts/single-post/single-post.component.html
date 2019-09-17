@@ -27,7 +27,7 @@
             <div class="post-content">
                 <div class="body-text content">
                     <md-editor name="Content" [(ngModel)]="post.content" [mode]="mode" [options]="options"
-                        [height]="height" [mode]="mode" [options]="options">
+                        [height]="height">
                     </md-editor>
                     <div class="postBtns">
                         <div>
@@ -82,7 +82,10 @@
                 </div>
             </div>
             <div class="create-comment">
-                    <app-create-comment (saveNewComment)="saveNewComment($event)"></app-create-comment>
+                <app-create-comment (saveNewComment)="saveNewComment($event)" [isReset]="resetForm"></app-create-comment>
+            </div>
+            <div class="allComments">
+                <app-all-comments [postId]="post._id" [comments]="post.comments"></app-all-comments>
             </div>
         </div>
     </div>

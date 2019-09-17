@@ -1,1 +1,22 @@
-<p>edit-comment works!</p>
+<div>
+    <div class="field">
+        <p>
+            Edit your comment: <small>
+                <a (click)="cancelCommentEdit()">Cancel edit</a>
+            </small>
+        </p>
+        <form [formGroup]="editCommentForm">
+
+            <div style="border: 1px solid">
+                <md-editor formControlName="content" mode="editor" [options]="option" [height]="'200px'">
+                </md-editor>
+            </div>
+            <div class="editComment">
+                <button class="button" (click)="updateComment(editCommentForm.value)"
+                    [disabled]="editCommentForm.invalid">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

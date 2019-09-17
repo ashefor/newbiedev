@@ -1,1 +1,20 @@
-<p>reply-comment-reply works!</p>
+<div>
+    <p>
+        Leave a reply: <small>
+            <a (click)="cancelReply()">Cancel reply</a>
+        </small>
+    </p>
+    <div class="field">
+        <form [formGroup]="replyCommentForm">
+            <div style="border: 1px solid">
+                <md-editor formControlName="content" mode="editor" [options]="option" [height]="'200px'">
+                </md-editor>
+            </div>
+            <div class="reply_submit">
+                <button class="button" (click)="sendReply(replyCommentForm.value)" type="submit"
+                    [disabled]="replyCommentForm.invalid">
+                    Post Reply
+                </button>
+            </div>
+        </form>
+    </div>
