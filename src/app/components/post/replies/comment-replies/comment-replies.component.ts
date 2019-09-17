@@ -26,28 +26,27 @@ export class CommentRepliesComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  showEditThisReply(reply_id){
-    this.service.getReplyForUpdate(this.postId, this.commentId, reply_id).subscribe((data: any)=>{
+
+  showEditThisReply(reply_id) {
+    this.service.getReplyForUpdate(this.postId, this.commentId, reply_id).subscribe((data: any) => {
       this.editReplyId = data.reply._id;
       this.replyContent = data.reply.content;
-      // this.ds.sendCommentReplyData(data.reply.content)
     })
   }
-  cancelEditThisReply(){
+  cancelEditThisReply() {
     this.editReplyId = null;
   }
 
-  editThisReply(reply: IReplies){
-    this.service.editCommentReply(this.postId, this.commentId, this.editReplyId, reply.content).subscribe((data: any)=>{
-      if(data){
+  editThisReply(reply: IReplies) {
+    this.service.editCommentReply(this.postId, this.commentId, this.editReplyId, reply.content).subscribe((data: any) => {
+      if (data) {
         this.replies = data.comments[this.commentIndex].replies;
       }
     })
   }
-  deleteThisReply(reply_id){
-    if(confirm('really delete this reply?')){
-      this.service.deleteCommentReply(this.postId, this.commentId, reply_id).subscribe((resp: any)=>{
+  deleteThisReply(reply_id) {
+    if (confirm('really delete this reply?')) {
+      this.service.deleteCommentReply(this.postId, this.commentId, reply_id).subscribe((resp: any) => {
         this.replies = resp.comments[this.commentIndex].replies;
         this.toastr.successToaster('Reply deleted successfully')
       })
