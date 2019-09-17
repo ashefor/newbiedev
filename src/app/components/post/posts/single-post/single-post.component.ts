@@ -72,8 +72,8 @@ export class SinglePostComponent implements OnInit {
   saveNewComment(comment: IComments){
     this.service.createComment(this.post._id, comment.content).subscribe((data: any)=>{
       if(data){
-        this.post = data;
         this.resetForm = true
+        this.post = data;
       }
     })
   }

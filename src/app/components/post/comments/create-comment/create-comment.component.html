@@ -2,7 +2,7 @@
     <p>
         Leave a comment:
     </p>
-    <form [formGroup]="commentForm">
+    <form [formGroup]="commentForm" #editForm>
         <div style="border: 1px solid">
             <md-editor formControlName="content" mode="editor" [options]="option" [height]="'200px'">
             </md-editor>

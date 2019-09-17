@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { MarkdownOptions } from 'src/app/models/markdown.model';
 import { IComments } from 'src/app/models/post.model';
@@ -8,9 +8,9 @@ import { IComments } from 'src/app/models/post.model';
   templateUrl: './create-comment.component.html',
   styleUrls: ['./create-comment.component.scss']
 })
-export class CreateCommentComponent implements OnInit {
+export class CreateCommentComponent implements OnInit, OnChanges{
   commentForm: FormGroup;
-  @Input() isReset;
+  @Input() isReset: boolean = false;
   @Output() saveNewComment = new EventEmitter();
   
 
@@ -27,7 +27,7 @@ export class CreateCommentComponent implements OnInit {
   }
   ngOnChanges() {
     if (this.isReset) {
-      this.commentForm.reset();
+      this.commentForm.reset()
     }
   }
   initialiseForm() {

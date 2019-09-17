@@ -4,11 +4,24 @@ import { MarkdownOptions } from 'src/app/models/markdown.model';
 import { PostsService } from 'src/app/services/posts.service';
 import { DataService } from 'src/app/services/data.service';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-all-comments',
   templateUrl: './all-comments.component.html',
-  styleUrls: ['./all-comments.component.scss']
+  styleUrls: ['./all-comments.component.scss'],
+  animations: [
+    trigger('EnterLeave', [
+      state('flyIn', style({transform: 'translateY(0)'})),
+      transition(':enter', [
+        style({transform: 'translateY(-100%)'}),
+        animate('0.5s 300ms ease-in')
+      ]),
+      transition(':leave',[
+        animate('0.3s ease-out', style({ transform: 'translateY(100%)' }))
+      ])
+    ])
+  ]
 })
 export class AllCommentsComponent implements OnInit {
   @Input() comments: IComments[]
