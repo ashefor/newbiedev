@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
-import { IReplies } from 'src/app/models/post.model';
+import { MarkdownOptions } from 'src/app/models/markdown';
+import { IReplies } from 'src/app/models/post';
 
 @Component({
   selector: 'app-reply-comment-reply',

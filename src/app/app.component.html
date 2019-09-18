@@ -1,1 +1,31 @@
+<div class="navmenu">
+    <nav>
+        <div>
+            <ul class="">
+              <li class="">
+                <a class=""
+                   [routerLink]="['/posts']"
+                   routerLinkActive="active">Home</a>
+              </li>
+            </ul>
+        </div>
+        <div class="rightmenu">
+            <ul class="">
+                <li class=""
+                    *ngIf="isLoggedIn">
+                  <a class="">Welcome {{ userName }}</a>
+                </li>
+                <li class=""
+                    *ngIf="!isLoggedIn">
+                  <a class=""
+                  [routerLink]="['/users/login']" routerLinkActive="router-link-active" >Log In</a>
+                </li>
+                <li class=""
+                    *ngIf="isLoggedIn">
+                  <a class="" (click)="logOut()">Log Out</a>
+                </li>
+              </ul>
+        </div>
+    </nav>
+</div>
 <router-outlet></router-outlet>

@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LMarkdownEditorModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -38,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LMarkdownEditorModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule
   ]

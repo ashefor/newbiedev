@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IReplies } from 'src/app/models/post.model';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { IReplies } from 'src/app/models/post';
+import { MarkdownOptions } from 'src/app/models/markdown';
 import { PostsService } from 'src/app/services/posts.service';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-comment-replies',
@@ -22,11 +23,14 @@ export class CommentRepliesComponent implements OnInit {
   newCommentId: any;
   editReplyId: string;
   replyContent: string;
-  constructor(private service: PostsService, private toastr: ToastrNotificationService) { }
+  constructor(private service: PostsService, private toastr: ToastrNotificationService, private authservice: AuthService) { }
 
   ngOnInit() {
   }
 
+  get isLoggedIn(){
+    return this.authservice.isLoggedIn
+  }
   showEditThisReply(reply_id) {
     this.service.getReplyForUpdate(this.postId, this.commentId, reply_id).subscribe((data: any) => {
       this.editReplyId = data.reply._id;

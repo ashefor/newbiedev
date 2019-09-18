@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
-import { IComments } from 'src/app/models/post.model';
+import { MarkdownOptions } from 'src/app/models/markdown';
+import { IComments } from 'src/app/models/post';
 
 @Component({
   selector: 'app-create-comment',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { MarkdownOptions } from 'src/app/models/markdown';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { IComments } from 'src/app/models/post.model';
+import { IComments } from 'src/app/models/post';
 
 @Component({
   selector: 'app-edit-comment',

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
-import { posts, IComments } from 'src/app/models/post.model';
+import { posts, IComments } from 'src/app/models/post';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { MarkdownOptions } from 'src/app/models/markdown';
 import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({

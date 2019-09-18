@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IComments, IReplies } from 'src/app/models/post.model';
-import { MarkdownOptions } from 'src/app/models/markdown.model';
+import { IComments, IReplies } from 'src/app/models/post';
+import { MarkdownOptions } from 'src/app/models/markdown';
 import { PostsService } from 'src/app/services/posts.service';
 import { DataService } from 'src/app/services/data.service';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-all-comments',
@@ -34,12 +35,15 @@ export class AllCommentsComponent implements OnInit {
   newCommentId: any;
   editCommentId: any;
   commentToEdit: string;
-  constructor(private service: PostsService, private dataservice: DataService, private toastr: ToastrNotificationService) { }
+  constructor(private service: PostsService, private dataservice: DataService, private toastr: ToastrNotificationService,
+    private authservice: AuthService) { }
 
   ngOnInit() {
   }
 
-
+  get isLoggedIn(){
+    return this.authservice.currentUSer
+  }
   showEditComment(comment_id) {
     this.service.getSingleCommentForUpdate(this.postId, comment_id).subscribe((data: any) => {
       if (data) {

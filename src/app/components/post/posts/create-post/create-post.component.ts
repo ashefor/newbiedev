@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MarkdownOptions } from '../../../../models/markdown.model'
+import { MarkdownOptions } from '../../../../models/markdown'
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
