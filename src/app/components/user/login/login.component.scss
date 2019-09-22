@@ -23,14 +23,18 @@
 .loginform{
     max-width: 500px;
     margin: auto;
-    border: 1px solid;
-    padding: 20px;
+    // border: 1px solid;
+    // padding: 20px;
 
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus, 
-    input:-webkit-autofill:active  {
+    form{
+      // padding: 0 25px;
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover, 
+      input:-webkit-autofill:focus, 
+      input:-webkit-autofill:active  {
         box-shadow: 0 0 0 30px white inset !important;
         -webkit-box-shadow: 0 0 0 30px white inset !important;
-}
+      }
+    }
 }

@@ -12,29 +12,35 @@ import { ToastrNotificationService } from 'src/app/services/toastr-notification.
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
-  constructor(private authservice: AuthService,private formbuilder: FormBuilder, private router: Router, private toastr: ToastrNotificationService) { }
+  checked: boolean = false;
+  constructor(private authservice: AuthService, private formbuilder: FormBuilder, private router: Router, private toastr: ToastrNotificationService) { }
 
   ngOnInit() {
     this.initialiseForm()
   }
-  initialiseForm(){
+  initialiseForm() {
     this.loginForm = this.formbuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      checked: [this.checked]
     })
   }
 
   getErrorMessage() {
     return this.loginForm.get('username').hasError('required') ? 'You must enter a value' :
-        this.loginForm.get('username').hasError('minlength') ? 'Not a valid email' :
-            '';
+      this.loginForm.get('username').hasError('minlength') ? 'Not a valid email' :
+        '';
   }
-  login(formvalue){
-    if(this.loginForm && this.loginForm.valid){
-      this.authservice.loginUser(formvalue.username, formvalue.password)
-    this.router.navigateByUrl('/posts')
-    }else{
+  login(formvalue) {
+    if (this.loginForm && this.loginForm.valid) {
+      this.authservice.loginUser(formvalue.username, formvalue.password, formvalue.checked)
+      this.router.navigateByUrl('/posts')
+    } else {
       this.toastr.errorToaster('please enter a username and/or password')
     }
+  }
+
+  keepLoggedIn(e) {
+    this.checked = e.target.checked
   }
 }

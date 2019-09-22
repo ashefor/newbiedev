@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
 import { IUser } from '../models/user';
 import { ToastrNotificationService } from './toastr-notification.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../components/user/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  currentUSer: IUser
-  constructor(private toastr: ToastrNotificationService) { }
+  public currentUSer;
+  private currentUserSubject: BehaviorSubject<User>;
+  public loggedInUser: Observable<User>
+  constructor(private http: HttpClient, private toastr: ToastrNotificationService) {
+    this.currentUSer = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
+  }
 
-  loginUser(username: string, password: string) {
+  loginUser(username: string, password: string, keepLoggedIn: boolean) {
     if (!username || !password) {
       this.toastr.warningToaster('please enter a username')
       return;
@@ -20,7 +27,13 @@ export class AuthService {
         userName: username,
         isAdmin: true
       }
-      this.toastr.successToaster('Welcome admin');
+      // this.toastr.successToaster('Welcome admin');
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUSer))
+      if (keepLoggedIn === false) {
+        setTimeout(() => {
+          localStorage.removeItem('currentUser')
+        }, 86400000)
+      }
       return
     }
     this.currentUSer = {
@@ -28,13 +41,20 @@ export class AuthService {
       userName: username,
       isAdmin: false
     }
-    this.toastr.successToaster(`welcome in ${username}`)
+    // this.toastr.successToaster(`welcome in ${username}`)
+    localStorage.setItem('currentUser', JSON.stringify(this.currentUSer))
+    if (keepLoggedIn === false) {
+      setTimeout(() => {
+        localStorage.removeItem('currentUser')
+      }, 86400000)
+    }
   }
 
   logOut() {
-    this.currentUSer = null
+    this.currentUSer = null;
+    localStorage.removeItem('currentUser')
   }
-  get isLoggedIn(): boolean {
+  public get isLoggedIn(): boolean {
     return !!this.currentUSer
   }
 }
