@@ -35,13 +35,15 @@
                <!-- <button type="button" class="btn btn-primary mr-sm-2">Primary</button> -->
                <a [routerLink]="['/posts/create']" routerLinkActive="router-link-active"  role="button" class="btn btn-secondary mr-5 mt-auto mb-auto" href="#">Write a post</a>
                <div class="mt-auto mb-auto d-none d-md-inline" *ngIf="currentUser">
+                  <span class="mr-2">
+                      Welcome <a href="">{{currentUser.user.username | titlecase}}</a>
+                  </span>
                    <a>
                        <span class="mr-3">
                            <i class="fa fa-bell"></i>
                        </span>
                    </a>
                </div>
-               <!-- <a role="button"   class="btn btn-primary my-2 my-sm-0 d-none d-md-inline">Login</a> -->
                <div class="mt-auto mb-auto" *ngIf="!currentUser">
                    <a class="navbar-brand d-none d-md-inline" [routerLink]="['/auth/login']" routerLinkActive="router-link-active">Login</a>
                </div>
