@@ -9,11 +9,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/guards/token-interceptor.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

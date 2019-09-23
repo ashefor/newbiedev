@@ -43,4 +43,8 @@ export class LoginComponent implements OnInit {
   keepLoggedIn(e) {
     this.checked = e.target.checked
   }
+
+  togglePwd(){
+    this.hide = !this.hide
+  }
 }

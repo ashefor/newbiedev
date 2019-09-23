@@ -1,29 +1,42 @@
 <div id="logreg-forms">
-        
+    <form action="/signup/" class="form-signup">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Continue with</h1>
+            <div class="container">
+                    <div class="row social-login">
+                            <a role="button" class="col-md-5 btn google-btn"><span><i class="fa fa-google"></i> &nbsp; Google</span></a>
+                            <!-- <div class="col-lg-2 col-sm-0"></div> -->
+                            <a role="button" class="col-md-5 ml-auto btn facebook-btn mp"><span><i class="fa fa-facebook-official"></i> &nbsp; Facebook</span> </a>
+                        </div>
+                        <div class="row mt-3 social-login">
+                                <a role="button" class="col-md-5 btn github-btn"><span><i class="fa fa-github"></i> &nbsp; Github</span> </a>
+                                <!-- <div class="col-lg-2 col-md-6">
+                                </div> -->
+                                <a role="button" class="col-md-5 ml-auto btn linkedin-btn mp"><span><i class="fa fa-linkedin"></i> &nbsp; Linkedin</span></a>
+                            </div>
+               </div>
 
-            <!-- <form action="/reset/password/" class="form-reset">
-                <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
-                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
-            </form> -->
-            
-            <form action="/signup/" class="form-signup">
-                <div class="social-login">
-                    <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
-                </div>
-                <div class="social-login">
-                    <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
-                </div>
-                
-                <p style="text-align:center">OR</p>
+        <p style="text-align:center">OR</p>
 
-                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-                <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
-                <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-                <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+        <input type="text" id="user-name" class="form-control mb-2" placeholder="Full name">
+        <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address">
+        <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password">
+        <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password">
 
-                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-            </form>
-            <br>
-            
-    </div>
+        <div class="form-check mt-2">
+                <input type="checkbox" (change)="keepLoggedIn($event)" formControlName="checked"
+                    class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#">Terms and Conditions</a></label>
+            </div>
+        <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up</button>
+
+        <hr>
+        <!-- Don't have an account! -->
+        <div class="text-center">
+            <span>
+                Already have an account? <a [routerLink]="['/auth/login']">Login here</a>
+            </span>
+        </div>
+    </form>
+
+
+</div>
