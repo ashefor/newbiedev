@@ -21,19 +21,19 @@
         <p class="text-center mt-3"> OR </p>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="username">
         <div class="password-area">
-            <input type="password" id="inputPassword" [type]="hide ? 'password' : 'text'" class="form-control"
+            <input type="password" id="inputPassword" class="form-control"
                 placeholder="Password" formControlName="password">
-            <a role="button" (click)="togglePwd()">
+            <!-- <a role="button" (click)="togglePwd()">
                 <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
-            </a>
+            </a> -->
         </div>
         <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in</button>
         <div class="d-flex mt-2">
-            <div class="form-check mr-auto">
+            <!-- <div class="form-check mr-auto">
                 <input type="checkbox" (change)="keepLoggedIn($event)" formControlName="checked"
                     class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div>
+            </div> -->
             <a [routerLink]="['/auth/reset-password']" id="forgot_pswd">Forgot password?</a>
         </div>
         <hr>

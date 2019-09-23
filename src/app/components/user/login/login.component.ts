@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formbuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
       password: ['', Validators.required],
-      checked: [this.checked]
+      // checked: [this.checked]
     })
   }
 
@@ -33,8 +33,13 @@ export class LoginComponent implements OnInit {
   }
   login(formvalue) {
     if (this.loginForm && this.loginForm.valid) {
-      this.authservice.loginUser(formvalue.username, formvalue.password, formvalue.checked)
-      this.router.navigateByUrl('/posts')
+      this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data=>{
+        if(data){
+          this.toastr.successToaster("successful login")
+          this.router.navigate(['/posts'])
+        }
+      })
+      
     } else {
       this.toastr.errorToaster('please enter a username and/or password')
     }

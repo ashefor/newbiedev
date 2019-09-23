@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { posts } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
+import { User } from 'src/app/components/user/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-all-posts',
@@ -8,10 +10,13 @@ import { PostsService } from 'src/app/services/posts.service';
   styleUrls: ['./all-posts.component.scss']
 })
 export class AllPostsComponent implements OnInit {
+  currentUser: User;
   posts: posts[];
   alltags = [];
   result = [];
-  constructor(private service: PostsService) { }
+  constructor(private service: PostsService, private authservice: AuthService) { 
+    this.currentUser = this.authservice.currentUserValue;
+  }
 
   ngOnInit() {
     this.getAllPosts()

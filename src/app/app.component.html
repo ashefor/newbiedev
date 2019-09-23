@@ -4,11 +4,11 @@
         <div class="container">
            <a class="navbar-brand" [routerLink]="['/posts']" routerLinkActive="router-link-active" >Navbar</a>
          <!-- <a class="d-block d-md-none" href="#">Navbar</a> -->
-         <a *ngIf="!isLoggedIn" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" class="navbar-brand d-block d-md-none">Login</a>
-         <button *ngIf="!isLoggedIn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <a *ngIf="!currentUser" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" class="navbar-brand d-block d-md-none">Login</a>
+         <button *ngIf="!currentUser" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="" *ngIf="isLoggedIn">
+         <div class="d-md-none d-block" *ngIf="currentUser">
              <a role="button" aria-label="Profile image with dropdown" class="profile-thumb menu-item-link d-fex align-items-center justify-content-center" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><img src="../assets/user.png" alt="Your profile photo"></a>
          </div>
        
@@ -17,13 +17,13 @@
              <li class="nav-item active">
                <a class="nav-link" href="posts">Home <span class="sr-only">(current)</span></a>
              </li>
-             <li class="nav-item" *ngIf="isLoggedIn">
+             <li class="nav-item" *ngIf="currentUser">
                <a class="nav-link">Dashboard</a>
              </li>
-             <li class="nav-item" *ngIf="isLoggedIn">
+             <li class="nav-item" *ngIf="currentUser">
                  <a class="nav-link">Notifications</a>
                </li>
-             <li class="nav-item" *ngIf="isLoggedIn">
+             <li class="nav-item" *ngIf="currentUser">
                <a class="nav-link" (click)="logOut()">Logout</a>
              </li>
            </ul>
@@ -34,18 +34,18 @@
            <div class="my-2 d-flex ml-auto">
                <!-- <button type="button" class="btn btn-primary mr-sm-2">Primary</button> -->
                <a [routerLink]="['/posts/create']" routerLinkActive="router-link-active"  role="button" class="btn btn-secondary mr-5 mt-auto mb-auto" href="#">Write a post</a>
-               <div class="mt-auto mb-auto d-none d-md-inline" *ngIf="isLoggedIn">
+               <div class="mt-auto mb-auto d-none d-md-inline" *ngIf="currentUser">
                    <a>
                        <span class="mr-3">
-                           <i class="fas fa-bell"></i>
+                           <i class="fa fa-bell"></i>
                        </span>
                    </a>
                </div>
                <!-- <a role="button"   class="btn btn-primary my-2 my-sm-0 d-none d-md-inline">Login</a> -->
-               <div class="mt-auto mb-auto" *ngIf="!isLoggedIn">
+               <div class="mt-auto mb-auto" *ngIf="!currentUser">
                    <a class="navbar-brand d-none d-md-inline" [routerLink]="['/auth/login']" routerLinkActive="router-link-active">Login</a>
                </div>
-               <div class="d-none d-md-inline" *ngIf="isLoggedIn">
+               <div class="d-none d-md-inline" *ngIf="currentUser">
                    <a aria-label="Profile image with dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="profile-thumb menu-item-link align-items-center justify-content-center"><img src="../assets/user.png" alt="Your profile photo"></a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                        <a class="dropdown-item">Dashboard</a>

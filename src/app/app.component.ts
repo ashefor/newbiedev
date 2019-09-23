@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { User } from './components/user/user';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +11,22 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'newbie';
   @ViewChild('navbar', {static: false}) navBar: ElementRef<HTMLElement>
-  public currentUser;
+  // public currentUser;
+  currentUser;
+  // thisUser: User
   constructor(private authservice: AuthService, private router: Router) {
-    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')): '';
+    // this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')): '';
+    this.authservice.currentUser.subscribe(data => this.currentUser = data)
   }
 
-  get isLoggedIn() {
-    return this.authservice.isLoggedIn
-  }
+  // get isLoggedIn() {
+  //   return this.authservice.isLoggedIn
+  // }
 
   get userName() {
     if (this.authservice.currentUSer) {
-      return this.authservice.currentUSer.userName
+      // return this.authservice.currentUSer.userName
+      return this.authservice.currentUserValue.username
     }
     return ''
   }
