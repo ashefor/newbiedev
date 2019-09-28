@@ -51,12 +51,6 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-// #logreg-forms .social-login{
-//   width:390px;
-//   margin:0 auto;
-//   margin-bottom: 14px;
-// }
 #logreg-forms .social-btn{
   font-weight: 100;
   color:white;
@@ -81,6 +75,7 @@
     position: absolute;
     right: 15px;
     top: 10px;
+    z-index: 99;
     color: black !important;
   }
 }
@@ -93,11 +88,6 @@
       width:300px;
   }
   
-  // #logreg-forms  .social-login{
-  //     width:200px;
-  //     margin:0 auto;
-  //     margin-bottom: 10px;
-  // }
   #logreg-forms  .social-btn{
       font-size: 1.3rem;
       font-weight: 100;
@@ -109,16 +99,6 @@
   #logreg-forms .social-btn:nth-child(1){
       margin-bottom: 5px;
   }
-  // #logreg-forms .social-btn span{
-  //     display: none;
-  // }
-  // #logreg-forms  .facebook-btn:after{
-  //     content:'Facebook';
-  // }
-
-  // #logreg-forms  .google-btn:after{
-  //     content:'Google+';
-  // }
   
 }
 @media (max-width: 767.98px){

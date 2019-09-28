@@ -57,4 +57,8 @@ export class PostsService {
   deleteCommentReply(post_id: string, comment_id: string, reply_id: string) {
     return this.http.delete(`${environment.postsURL}/${post_id}/comments/${comment_id}/replies/${reply_id}`)
   }
+
+  uploadImages(file: any){
+    return this.http.post(environment.imagesURL, file, {reportProgress: true, observe: 'events'})
+  }
 }

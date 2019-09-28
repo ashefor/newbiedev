@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { ToastrNotificationService } from 'src/app/services/toastr-notification.
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
+  loading;
   checked: boolean = false;
   constructor(private authservice: AuthService, private formbuilder: FormBuilder, private router: Router, private toastr: ToastrNotificationService) { }
 
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formbuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
       password: ['', Validators.required],
-      // checked: [this.checked]
+      checked: [this.checked]
     })
   }
 
@@ -33,14 +35,18 @@ export class LoginComponent implements OnInit {
   }
   login(formvalue) {
     if (this.loginForm && this.loginForm.valid) {
+      this.loading = true;
       this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data=>{
         if(data){
+          this.loading = false
           this.toastr.successToaster("successful login")
           this.router.navigate(['/posts'])
         }
+      },(error: HttpErrorResponse)=>{
+        this.loading = false
       })
-      
     } else {
+      this.loading = false;
       this.toastr.errorToaster('please enter a username and/or password')
     }
   }

@@ -10,6 +10,9 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/guards/token-interceptor.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ErrorInterceptor } from './services/guards/errorInterceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -21,11 +24,13 @@ import { ProfileComponent } from './components/profile/profile.component';
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatSnackBarModule,
     HttpClientModule,
     AppRoutingModule,
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
+    {provide:HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

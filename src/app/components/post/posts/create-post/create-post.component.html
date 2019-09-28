@@ -7,33 +7,32 @@
             <div class="create-content">
                 <md-editor formControlName="content" [mode]="mode" [options]="option" [height]="height">
                 </md-editor>
+
+                <!-- Button trigger modal -->
+                <!-- <button mat-raised-button type="button" class="btn" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Images
+                </button> -->
+                <a (click)="openThisModal()" mat-raised-button class="btn" role="button">Images</a>
+
             </div>
             <mat-form-field class="example-chip-list">
-                    <mat-chip-list #chipList aria-label="Fruit selection">
-                      <mat-chip
-                        *ngFor="let fruit of fruits"
-                        [selectable]="selectable"
-                        [removable]="removable"
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
                         (removed)="remove(fruit)">
                         {{fruit}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input
-                        placeholder="Add Tag(s)"
-                        #fruitInput
-                        [formControl]="fruitCtrl"
-                        [matAutocomplete]="auto"
-                        [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="add($event)">
-                    </mat-chip-list>
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                    </mat-chip>
+                    <input placeholder="Add Tag(s)" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
                         {{fruit}}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
 
             <div>
                 <button class="button is-info is-fullwidth is-medium" type="submit" [disabled]="createPostForm.invalid">
@@ -41,10 +40,51 @@
                         Create Post
                     </span>
                     <span class="icon is-small" *ngIf="loading">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                        <i class="fa fa-spinner fa-spin"></i>
                     </span>
                 </button>
             </div>
         </form>
     </div>
+
+
+    <div #openmodal id="popup1" class="overlay">
+        <div class="popup">
+            <a class="close" role="button" (click)="closeModal()">&times;</a>
+            <h2>Markdown images</h2>
+            <div class="content">
+                <div class="fileinput">
+                    <div class="w-100" *ngIf="!result">
+                            <input type="file" class="w-100" #upload (change)="selectFile($event)">
+                            <p *ngIf="uploading">Uploading</p>
+                    </div>
+                    <div *ngIf="result" class="w-100">
+                        <textarea name="" id="" cols="30" rows="2" [(ngModel)]="imgMarkdownURL"
+                            class="w-100"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg" (click)="resetFile()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    <div class="fileinput">
+
+                        <label for="">Markdown images</label>
+                        <textarea name="" id="" cols="30" rows="2" [(ngModel)]="imgMarkdownURL"
+                            class="w-100"></textarea>
+                        <input class="w-100" type="file" #upload (change)="selectFile($event)">
+                        <button type="button" (click)="resetFile()">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </section>

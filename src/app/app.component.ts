@@ -18,7 +18,7 @@ export class AppComponent {
   logOut() {
     this.authservice.logOut();
     this.navBar.nativeElement.classList.remove('show')
-    // this.router.navigate(['/users/login'])
+    this.router.navigate(['/auth/login'])
   }
 
   isActivated(componentRef){

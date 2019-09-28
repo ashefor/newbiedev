@@ -27,41 +27,15 @@ export class AuthService {
   }
 
   registerUser(user: User ){
-    return this.http.post(`${environment.usersURL}/register`, user)
+    return this.http.post<any>(`${environment.usersURL}/register`, user).pipe(map(data=>{
+      if(data && data.token){
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        this.currentUserSubject.next(data)
+      }
+      return data
+    }))
   }
-  // loginUser(username: string, password: string, keepLoggedIn: boolean) {
-  //   if (!username || !password) {
-  //     this.toastr.warningToaster('please enter a username')
-  //     return;
-  //   }
-  //   if (username === 'admin') {
-  //     this.currentUSer = {
-  //       id: 1,
-  //       userName: username,
-  //       isAdmin: true
-  //     }
-  //     // this.toastr.successToaster('Welcome admin');
-  //     localStorage.setItem('currentUser', JSON.stringify(this.currentUSer))
-  //     if (keepLoggedIn === false) {
-  //       setTimeout(() => {
-  //         localStorage.removeItem('currentUser')
-  //       }, 86400000)
-  //     }
-  //     return
-  //   }
-  //   this.currentUSer = {
-  //     id: 2,
-  //     userName: username,
-  //     isAdmin: false
-  //   }
-  //   // this.toastr.successToaster(`welcome in ${username}`)
-  //   localStorage.setItem('currentUser', JSON.stringify(this.currentUSer))
-  //   if (keepLoggedIn === false) {
-  //     setTimeout(() => {
-  //       localStorage.removeItem('currentUser')
-  //     }, 86400000)
-  //   }
-  // }
+
   loginUser(email: string, password: string){
     return this.http.post<any>(`${environment.usersURL}/login`, {email, password}).pipe(map(user => {
       if(user && user.token){

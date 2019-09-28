@@ -10,20 +10,11 @@ export class TokenInterceptorService implements HttpInterceptor{
   constructor(private authservice: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    // const currentUSer =  this.authservice.isLoggedIn;
-    // if(currentUSer && currentUSer){
-    //   request = request.clone({
-    //     setHeaders: {
-    //       Authorization: `Bearer ${localStorage.getItem('currentUser')}`
-    //     }
-    //   })
-    // }
-
     let currentuser = this.authservice.currentUserValue
     if(currentuser && currentuser.token){
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentuser.token}`
+          Authorization: currentuser.token
         }
       })
     }

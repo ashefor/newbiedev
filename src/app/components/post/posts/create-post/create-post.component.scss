@@ -1,5 +1,8 @@
+.progress-bar{
+    background-color: rgb(21, 26, 31, 0.4) !important
+}
 .wrapper{
-    max-width: 950px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 
@@ -19,7 +22,6 @@
             padding: 32px 36px;
             height: 100px;
             font-size: 1.5rem;
-            border: 0;
             font-weight: 700;
             background: 0 0;
             color: #000;
@@ -27,6 +29,127 @@
             outline: none;
         }
     }
+    .create-content{
+        border: 1px solid
+    }
+}
+.modal{
+    .modal-body{
+        padding: 2rem;
 
-    
+        .close{
+            margin-bottom: 100px
+        }
+    }
+}
+
+.open{
+    display: block !important;
+}
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    display: none;
+}
+.popup{
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    width: 50%;
+    height: 100%;
+    max-height: 350px;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+
+    h2 {
+        color: #333;
+        font-family: Tahoma, Arial, sans-serif;
+        margin-top: 20px;
+    }
+    .close {
+        position: absolute;
+        cursor: pointer;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+
+        &:hover {
+            color: #06D85F;
+            }
+    }
+    .content {
+        // max-height: 30%;
+            overflow: auto;
+
+            .fileinput {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            textarea{
+                margin-top: 20px;
+                height: 55px;
+            }
+            input{
+                border: 1px solid #ccc;
+                height: 55px;
+                border-radius: 5px;
+                padding: 11.5px 10px;
+                margin-top: 20px
+            }
+            button{
+                position: absolute;
+                bottom: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px){
+    .popup{
+        width: 70%;
+    }
+}
+:host ::ng-deep md-editor{
+    .md-editor-container {
+        // min-height: 60vh !important;
+        // min-height: calc(60vh - 100px) !important;
+        // padding: 32px 36px;
+        width: 100%;
+        border: none;
+        font-size: 1.12rem;
+        margin-bottom: 24px;
+        color: #000;
+        background: 0 0;
+
+        .editor-container {
+            .preview-panel {
+                word-break: break-word;
+                border-left: unset !important;
+                text-align: justify;
+              }
+
+              .ace-tm .ace_print-margin{
+                  width: unset !important
+              }
+
+              .ace-tm .ace_marker-layer .ace_active-line{
+                  background: unset !important
+              }
+
+              .ace_gutter{
+                  display: none;
+              }
+        }
+      }
 }

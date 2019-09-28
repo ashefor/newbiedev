@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MarkdownOptions } from '../../../../models/markdown'
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { PostsService } from 'src/app/services/posts.service';
 import { Router } from '@angular/router';
+import { HttpEventType, HttpEvent } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-post',
@@ -17,7 +18,13 @@ import { Router } from '@angular/router';
 export class CreatePostComponent implements OnInit {
   createPostForm: FormGroup;
   selectedtags = [];
+  percentdone;
+  imgMarkdownURL: string;
+  result: boolean;
+  imgDirectURL: string;
   loading: boolean;
+  uploading: boolean;
+  selectedFile: File
   alltags: string[] = [
     'general',
     'frontend',
@@ -40,18 +47,19 @@ export class CreatePostComponent implements OnInit {
   filteredFruits: Observable<string[]>;
   fruits: string[] = [];
   allFruits: string[] = ['general',
-  'frontend',
-  'backend',
-  'javascript',
-  'framework',
-  'typescript',
-  'design',
-  'vue',
-  'react',
-  'angular'];
-
-  @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+    'frontend',
+    'backend',
+    'javascript',
+    'framework',
+    'typescript',
+    'design',
+    'vue',
+    'react',
+    'angular'];
+  @ViewChild('openmodal', { static: false }) openModal: ElementRef<HTMLElement>
+  @ViewChild('upload', { static: false }) myInput: ElementRef<HTMLInputElement>
+  @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
   constructor(private formbuilder: FormBuilder, private service: PostsService, private route: Router) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -133,7 +141,41 @@ export class CreatePostComponent implements OnInit {
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
+  selectFile(event) {
+    this.selectedFile = event.target.files[0]
+    console.log(this.selectedFile)
+    const imageData = new FormData()
+    imageData.append('image', this.selectedFile)
+    this.myInput.nativeElement.classList.add('progress-bar', 'progress-bar-striped', 'progress-bar-animated')
+    this.uploading = true;
+    this.service.uploadImages(imageData).subscribe((event: HttpEvent<any>) => {
+      // console.log(event)
 
+      if (event.type === HttpEventType.UploadProgress) {
+        this.percentdone =  Math.round(100 * event.loaded / event.total);
+        const percentDone = Math.round(100 * event.loaded / event.total);
+        // console.log(percentDone)
+
+      }
+      if (event.type === HttpEventType.Response) {
+        // console.log(event.body)
+        this.result = true;
+        this.imgMarkdownURL = `![Image Alt Text](${event.body.url})`
+      }
+    })
+  }
+  openThisModal() {
+    this.openModal.nativeElement.classList.add('open')
+  }
+  closeModal() {
+    this.openModal.nativeElement.classList.remove('open')
+  }
+  resetFile() {
+    // this.myInput.nativeElement.value = ''
+    this.result = false;
+    this.uploading = false;
+    this.imgMarkdownURL = ''
+  }
   onSubmit() {
     this.loading = true;
     if (this.createPostForm.invalid) {
@@ -146,6 +188,8 @@ export class CreatePostComponent implements OnInit {
         this.route.navigate(['/posts'])
         this.loading = false
       }
+    },(error:any)=>{
+      this.loading = false
     })
   }
 }
