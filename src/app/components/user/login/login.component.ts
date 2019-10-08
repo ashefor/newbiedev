@@ -1,9 +1,11 @@
+declare var swal: any;
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -38,11 +40,12 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data=>{
         if(data){
+          swal('successful')
           this.loading = false
           this.toastr.successToaster("successful login")
           this.router.navigate(['/posts'])
         }
-      },(error: HttpErrorResponse)=>{
+      },(error: any)=>{
         this.loading = false
       })
     } else {

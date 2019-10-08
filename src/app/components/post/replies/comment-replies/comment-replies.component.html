@@ -28,7 +28,7 @@
                     </md-editor>
                 </mat-card-content>
                 <div class="deletebtn">
-                    <a *ngIf="isLoggedIn" (click)="deleteThisReply(reply._id)" class="actionBtn"
+                    <a (click)="deleteThisReply(reply._id)" class="actionBtn"
                     title="Delete reply">
                     <img src="../../../../../assets/bin.png" alt="delete">
                   </a>

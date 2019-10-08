@@ -17,9 +17,9 @@
                             </a>
                         </mat-card-title>
                         <mat-card-subtitle>
-                            <p>{{post.author}}</p>
+                            <p>{{post.author.username}}</p>
                             <p>·</p>
-                            <p>{{post.date | timeAgo}}</p>
+                            <p>{{post.createdAt | timeAgo}}</p>
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>

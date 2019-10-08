@@ -1,12 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { AuthService } from '../auth.service';
 import { tap, catchError } from 'rxjs/operators';
-import { ToastrNotificationService } from '../toastr-notification.service';
-import { Router } from '@angular/router'
-import { ToastrService } from 'ngx-toastr';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
+import { ToastrNotificationService } from '../services/toastr-notification.service';
 
 
 @Injectable({
@@ -20,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         const toastr = this.injector.get(ToastrNotificationService)
         return next.handle(req).pipe(catchError((err: HttpErrorResponse)=>{
             console.log(err)
-            toastr.errorToaster(err && err.error? err.error: 'An error occured')
+            toastr.errorToaster(err && err.error && err.error.message? err.error.message: 'An error occured')
             return throwError(err)
         }))
     }

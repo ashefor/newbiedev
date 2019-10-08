@@ -13,23 +13,31 @@ a{
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.actionBtn{
-    img{
-        width: 20px;
-        height: 20px;
-    }
-}
 .replybtn{
     position: absolute;
+    width: 30px;
+    height: 30px;
     top: 20px;
     right: 10px;
-    font-size: 17px;
-    padding: 2px 8px
+    padding: 2px 8px;
+
+    .actionBtn{
+        img{
+           width: 100%
+        }
+    }
 }
 .deletebtn{
     position: absolute;
-    bottom: 15px;
+    width: 30px;
+    height: 30px;
+    bottom: 5px;
     right: 10px;
-    font-size: 17px;
-    padding: 2px 8px
+    padding: 2px 8px;
+
+    .actionBtn{
+        img{
+           width: 100%
+        }
+    }
 }

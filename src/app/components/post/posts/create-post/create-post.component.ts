@@ -7,8 +7,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { PostsService } from 'src/app/services/posts.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpEventType, HttpEvent } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-post',
@@ -56,15 +58,27 @@ export class CreatePostComponent implements OnInit {
     'vue',
     'react',
     'angular'];
+    currentUser;
   @ViewChild('openmodal', { static: false }) openModal: ElementRef<HTMLElement>
   @ViewChild('upload', { static: false }) myInput: ElementRef<HTMLInputElement>
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
-  constructor(private formbuilder: FormBuilder, private service: PostsService, private route: Router) {
+  constructor(private router: ActivatedRoute,  
+    private title: Title, 
+    private formbuilder: FormBuilder, 
+    private service: PostsService, 
+    private route: Router,
+    private authservice: AuthService) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-    this.initialiseForm()
+    
+    this.title.setTitle(this.router.snapshot.data['pageTitle'])
+    this.authservice.currentUser.subscribe((data: any) => {
+      if(data){
+        this.currentUser = data.user
+      }
+    })
   }
 
   public option: MarkdownOptions = {
@@ -74,6 +88,8 @@ export class CreatePostComponent implements OnInit {
   }
   public height: string = "60vh"
   ngOnInit() {
+    this.initialiseForm()
+    // this.title.setTitle('Create Post')
   }
 
   initialiseForm() {
@@ -82,7 +98,8 @@ export class CreatePostComponent implements OnInit {
       content: [''],
       meta: this.formbuilder.group({
         tags: [this.fruits],
-        mediaIds: ['']
+        mediaIds: [''],
+        authorId: [this.currentUser.id? this.currentUser.id: null]
       })
     })
   }
@@ -138,7 +155,6 @@ export class CreatePostComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   selectFile(event) {
@@ -162,7 +178,9 @@ export class CreatePostComponent implements OnInit {
         this.result = true;
         this.imgMarkdownURL = `![Image Alt Text](${event.body.url})`
       }
-    })
+    },((error: any)=>{
+      this.uploading = false;
+    }))
   }
   openThisModal() {
     this.openModal.nativeElement.classList.add('open')

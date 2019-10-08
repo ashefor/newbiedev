@@ -3,11 +3,11 @@ import { AllPostsComponent } from './posts/all-posts/all-posts.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
-import { AuthGuard } from 'src/app/services/guards/auth.guard';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 export const postRoutes: Routes = [
     {path: '', component: AllPostsComponent},
-    {path: 'create', component: CreatePostComponent, canActivate: [AuthGuard]},
+    {path: 'create', component: CreatePostComponent, canActivate: [AuthGuard], data: {pageTitle: 'Create Post'}},
     {path: ':id', component: SinglePostComponent},
     {path: ':id/edit', component: EditPostComponent}
 ]

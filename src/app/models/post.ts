@@ -2,7 +2,10 @@ export interface posts {
     _id?: string;
     title: string;
     content: string;
-    author?: string;
+    author: {
+        id: string;
+        username: string;
+    }
     date?: Date;
     comments?: IComments[];
     media?:any;

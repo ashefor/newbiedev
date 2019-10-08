@@ -105,7 +105,7 @@
                 </a>
             </div>
             <div *ngIf="!editCommentId" class="deletebtn">
-                <a *ngIf="isLoggedIn" (click)="deleteThisComment(comment._id)" class="actionBtn" title="Delete comment">
+                <a (click)="deleteThisComment(comment._id)" class="actionBtn" title="Delete comment">
                     <img src="../../../../../assets/bin.png" alt="delete">
                 </a>
             </div>

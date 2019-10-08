@@ -6,19 +6,19 @@
                     <h1>{{post.title}}</h1>
                 </div>
                 <div class="post-author">
-                    <p>{{post.author}}</p>
-                    <div class="edit_del_btns">
+                    <p>{{post.author.username}}</p>
+                    <div *ngIf="authorAccess" class="edit_del_btns">
                         <a class="actionBtn edit_icon" title="Edit" [routerLink]="['/posts', post._id, 'edit']">
                             <img src="../../../../assets/edit.png" alt="edit">
                         </a>
-                        <a class="actionBtn edit_icon" (click)="deleteThisPost(post)" title="Delete">
+                        <a  class="actionBtn edit_icon" (click)="deleteThisPost(post)" title="Delete">
                             <img src="../../../../assets/trash.png" alt="delete">
                         </a>
                     </div>
                 </div>
                 <div>
                     <p class="s" title="{{post.date | date}}">
-                        Published <strong>{{post.date | timeAgo }}</strong></p>
+                        Published <strong>{{post.createdAt | timeAgo }}</strong></p>
                 </div>
                 <div *ngIf="alltags && alltags.length > 0">
                     <mat-chip class="mat-chip" *ngFor="let tag of alltags">{{tag}}</mat-chip>

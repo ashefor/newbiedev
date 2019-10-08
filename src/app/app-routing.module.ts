@@ -7,10 +7,10 @@ const routes: Routes = [
 
   
   {
-    path: 'posts', loadChildren: './components/post/posts.module#PostsModule'
+    path: 'posts', loadChildren: ()=> import('./components/post/posts.module').then((m)=>m.PostsModule)
   },
   {
-    path: 'auth', loadChildren: './components/user/user.module#UserModule'
+    path: 'auth', loadChildren: ()=> import('./components/user/user.module').then((m)=>m.UserModule)
   },
   { path: ':username', component: ProfileComponent },
 ];

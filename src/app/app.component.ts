@@ -9,11 +9,12 @@ import { User } from './components/user/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'newbie';
+  title = 'zlatan';
   @ViewChild('navbar', {static: false}) navBar: ElementRef<HTMLElement>
   currentUser;
   constructor(private authservice: AuthService, private router: Router) {
-    this.authservice.currentUser.subscribe(data => this.currentUser = data)
+    this.authservice.currentUser.subscribe((data: any) => this.currentUser = data?data.user: null)
+    console.log(this.currentUser)
   }
   logOut() {
     this.authservice.logOut();

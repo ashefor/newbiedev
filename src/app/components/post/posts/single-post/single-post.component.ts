@@ -5,28 +5,33 @@ import { posts, IComments } from 'src/app/models/post';
 import { ToastrNotificationService } from 'src/app/services/toastr-notification.service';
 import { MarkdownOptions } from 'src/app/models/markdown';
 import { FormGroup, NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss']
 })
-export class SinglePostComponent implements OnInit {
-  constructor(private router: ActivatedRoute, private service: PostsService, private toastr: ToastrNotificationService, private route: Router) { }
-
-  post: posts;
+export class SinglePostComponent implements OnInit {post: posts;
   showpost:boolean;
   nooflikes;
   hasLiked;
   hasLikedThis;
   hasLikedThis2;
   alltags = [];
+  currentUser;
   resetForm: boolean;
   public options: MarkdownOptions = {
     enablePreviewContentClick: true,
   }
   public mode: string = 'preview';
   public height: string = "auto";
+
+  constructor(private router: ActivatedRoute, private service: PostsService, private toastr: ToastrNotificationService, private route: Router,
+    private authservice: AuthService) {
+    this.authservice.currentUser.subscribe((data: any) => this.currentUser = data?data.user: null)
+    console.log(this.currentUser)
+   }
   
   ngOnInit() {
     this.router.params.subscribe((params: Params)=>{
@@ -39,6 +44,16 @@ export class SinglePostComponent implements OnInit {
         }
       })
     })
+  }
+
+  get authorAccess(){
+    const postAuthorId = this.post.author.id
+    if(this.currentUser){
+      if(postAuthorId === this.currentUser.id){
+        return true
+      }
+    }
+    return false
   }
 
   likePost(id) {
