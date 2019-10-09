@@ -1,5 +1,27 @@
 $padding1rem: 1rem;
 
+
+:host ::ng-deep md-editor{
+    .md-editor-container{
+        border: none;
+
+        .editor-container{
+            .preview-panel{
+                // border: none !important;
+                img{
+                    width: 100%
+                }
+            }
+
+            .ace-tm{
+                .ace_print-margin{
+                    width: 0px;
+                }
+            }
+        }
+    }
+}
+
 .mb1_5{
     margin-bottom: $padding1rem * 1.5
 }
@@ -16,9 +38,7 @@ $padding1rem: 1rem;
     }
 }
 .post-header{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    text-align: center;
 
     h1{
         font-size: 2.4rem;
@@ -52,8 +72,6 @@ mat-chip-list{
     font-weight: 500;
 }
 .body-text {
-    padding-left: 6rem;
-    padding-right: 6rem;
     font-size: 20px;
     line-height: 30px;  
 
@@ -102,23 +120,36 @@ mat-chip-list{
 .about_author{
     width: 85%;
     margin: auto;
-    display: flex;
+    position: relative;
+    overflow: hidden;
+    // display: flex;
 
     .author_avatar{
-        margin: auto;
+        text-align: center;
+        float: left;
+        width: 90px;
+        padding-top: 8px;
 
         img{
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
+            // width: 96px;
+            // height: 96px;width: 70px;
+            width: 70px;
+            height: 70px;
+            border-radius: 100px;
+            display: inline-block;
+            // border-radius: 50%;
         }
     }
     .author_deets{
-        margin-left: .5rem;
+        // margin-left: .5rem;
+        margin: auto;
+        width: calc(100% - 92px);
+        float: left;
 
         h4{
             margin: 13px 0 0;
             font-size: 28px;
+            text-align: left;
             font-weight: 400;
 
             a{
@@ -130,16 +161,18 @@ mat-chip-list{
             }
 
             .follow-btn{
-                background-color: transparent;
+                display: inline-block;
                 border: 1px solid #2962ff;
                 font-size: 13px;
                 color: #ffffff;
-                background-color: #2962ff;
+                background: #2962ff;
                 outline: 0;
                 border-radius: 10px;
+                border-radius: 5px;
+                vertical-align: 2px;
+                padding: 4px 7px;
                 margin-left: 1rem;
                 text-transform: uppercase;
-                font-size: .75rem;
             }
         }
 
@@ -148,7 +181,6 @@ mat-chip-list{
             padding-left: 0;
             line-height: 22px;
             font-size: 1rem;
-            text-align: justify;
         }
         .social{
             font-size: 0.85em;
@@ -168,3 +200,51 @@ mat-chip-list{
     width: 85%;
     margin: auto;
 }
+@media (max-width: 499px) {
+    .about_author{
+        width: 100%;
+    }
+    .create-comment{
+        width: 100%
+    }
+    .allComments{
+        width: 100%
+    }
+    .post_wrapper{
+        // font-size: 60%;
+    }
+    .body-text{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media (min-width: 500px) and (max-width: 767px) {
+    .post_wrapper{
+        // font-size: 75%;
+    }
+    .body-text{
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .post_wrapper{
+        // font-size: 85%;
+    }
+    .body-text{
+        // font-size: 85%;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media (min-width: 992px){
+    .post_wrapper{
+        // font-size: 100%;
+    }
+    .body-text{
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+}
+

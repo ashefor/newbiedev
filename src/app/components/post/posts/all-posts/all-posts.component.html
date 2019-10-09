@@ -1,10 +1,12 @@
 <section>
-    <div class="container">
-        <div class="allposts row">
-            <aside class="col-sm-12 col-md-3 col-lg-3 d-none d-md-block">
-                weller
-            </aside>
-            <div class="col-sm-12 col-md-9 col-lg-6">
+    <div class="container" fxLayout="column">
+        <div class="allposts" fxLayout="row" fxLayout.xs="column" fxLayoutGap="0.5%">
+            <div flexLayout="column" fxFlex="25%" fxShow fxShow.lt-md="false">
+                <div>
+                    center
+                </div>
+            </div>
+            <div class="" fxFlex="50%" fxFlexFill fxFlex.lt-md="100%" fxFlex.lt-sm="100%">
                 <mat-card class="example-card" *ngFor="let post of posts; let i = index">
 
                     <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
@@ -12,8 +14,8 @@
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
-                            <a [routerLink]="['/posts', post._id]">
-                                    {{post.title}} <small>{{result[i]}} min read </small>
+                            <a [routerLink]="['/posts', post._id]" fxLayout="row wrap">
+                                    {{post.title}} <small class="align-self-center">{{result[i]}} min read </small>
                             </a>
                         </mat-card-title>
                         <mat-card-subtitle>
@@ -49,9 +51,9 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
-            <aside class="col-sm-12 col-md-0 col-lg-3 d-none d-lg-block">
+            <div class="" fxFlex="25%" fxShow fxShow.lt-md="false">
                 wepl
-            </aside>
+            </div>
         </div>
     </div>
 </section>

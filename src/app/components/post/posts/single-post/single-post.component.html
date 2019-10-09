@@ -1,7 +1,7 @@
 <section>
     <div class="post_wrapper">
-        <div *ngIf="showpost">
-            <div class="post-header">
+        <div *ngIf="showpost" fxLayout="column">
+            <div class="post-header" fxLayout="column" fxLayoutAlign="center center">
                 <div>
                     <h1>{{post.title}}</h1>
                 </div>
@@ -24,7 +24,7 @@
                     <mat-chip class="mat-chip" *ngFor="let tag of alltags">{{tag}}</mat-chip>
                 </div>
             </div>
-            <div class="post-content">
+            <div class="post-content mt-3">
                 <div class="body-text content">
                     <md-editor name="Content" [(ngModel)]="post.content" [mode]="mode" [options]="options"
                         [height]="height">
@@ -60,10 +60,10 @@
                     <div class="author_deets">
                         <h4>
                             <a href="#">
-                                <strong>John Smith</strong>
+                                John Smith
                             </a>
-                            <button mat-button class="follow-btn">
-                                <span class="icon is-small"><i class="fas fa-user-plus"></i></span>
+                            <button class="follow-btn">
+                                <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
                                 <span>
                                     follow
                                 </span>
@@ -72,8 +72,6 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
                             pellentesque
-                            tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                            sectetur adipiscing elit.
                         </p>
                         <p class="social">
                             <a href="#"> @anonymous</a>

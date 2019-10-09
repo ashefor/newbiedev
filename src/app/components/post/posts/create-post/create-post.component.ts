@@ -44,6 +44,7 @@ export class CreatePostComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  mode = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
@@ -72,8 +73,6 @@ export class CreatePostComponent implements OnInit {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-    
-    this.title.setTitle(this.router.snapshot.data['pageTitle'])
     this.authservice.currentUser.subscribe((data: any) => {
       if(data){
         this.currentUser = data.user

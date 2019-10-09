@@ -5,7 +5,7 @@
                 <textarea formControlName="title" placeholder="Title"></textarea>
             </div>
             <div class="create-content">
-                <md-editor formControlName="content" [mode]="mode" [options]="option" [height]="height">
+                <md-editor formControlName="content" [mode]="mode? 'editor': 'preview'" [options]="option" [height]="height">
                 </md-editor>
 
                 <!-- Button trigger modal -->
@@ -34,11 +34,10 @@
                 </mat-autocomplete>
             </mat-form-field>
 
-            <div>
-                <button class="button is-info is-fullwidth is-medium" type="submit" [disabled]="createPostForm.invalid">
-                    <span>
-                        Create Post
-                    </span>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button type="button" (click)="mode = !mode"><span *ngIf="mode">Preview</span> <span *ngIf="!mode">Edit</span></button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="createPostForm.invalid">
+                    Create Post
                     <span class="icon is-small" *ngIf="loading">
                         <i class="fa fa-spinner fa-spin"></i>
                     </span>
@@ -55,8 +54,8 @@
             <div class="content">
                 <div class="fileinput">
                     <div class="w-100" *ngIf="!result">
-                            <input type="file" class="w-100" #upload (change)="selectFile($event)">
-                            <p *ngIf="uploading">Uploading</p>
+                        <input type="file" class="w-100" #upload (change)="selectFile($event)">
+                        <p *ngIf="uploading">Uploading</p>
                     </div>
                     <div *ngIf="result" class="w-100">
                         <textarea name="" id="" cols="30" rows="2" [(ngModel)]="imgMarkdownURL"
