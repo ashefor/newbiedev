@@ -7,7 +7,7 @@ $padding1rem: 1rem;
 
         .editor-container{
             .preview-panel{
-                // border: none !important;
+                border: none !important;
                 img{
                     width: 100%
                 }
@@ -47,15 +47,29 @@ $padding1rem: 1rem;
         margin: 0 auto 1rem;
     }
     .post-author{
+        align-items: center;
         margin-bottom: 1.5rem;
-        display: flex;
-        p{
-            margin: auto
+        span, time{
+            margin: 0 .5rem 0 0;
         }
-        .edit_del_btns{
-            margin: auto;
-            .edit_icon{
-                margin-left: .5rem
+        .edit_del_actions{
+            padding: 5px 0 0 5px;
+            display: inline-flex;
+
+            a{
+                display: inline-block;
+                background: #66e2d5;
+                color: #0a0a0a;
+                padding: 2px 12px 3px;
+                border-radius: 3px;
+                line-height: 1.1em;
+                margin-right: 4px;
+
+                &:last-of-type{
+                    cursor: pointer;
+                    color: #fff;
+                    background: red;
+                }
             }
         }
     }
@@ -214,9 +228,18 @@ mat-chip-list{
         // font-size: 60%;
     }
     .body-text{
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 0;
+        padding-right: 0;
     }
+}
+.profile-pic{
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;
+    display: inline-block;
+    vertical-align: -9px;
+    margin-right: 2px;
+    background: #f5f6f7;
 }
 @media (min-width: 500px) and (max-width: 767px) {
     .post_wrapper{

@@ -7,6 +7,8 @@ import { MarkdownOptions } from 'src/app/models/markdown';
 import { FormGroup, NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
+declare var swal: any;
+
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
@@ -21,6 +23,7 @@ export class SinglePostComponent implements OnInit {post: posts;
   alltags = [];
   currentUser;
   resetForm: boolean;
+  result;
   public options: MarkdownOptions = {
     enablePreviewContentClick: true,
   }
@@ -41,11 +44,18 @@ export class SinglePostComponent implements OnInit {post: posts;
           this.post = data;
           this.alltags = data.meta.tags;
           this.nooflikes = data.meta.likes;
+          this.readingTime(data.content)
         }
       })
     })
   }
 
+  readingTime(body) {
+    const wordsPerMinute = 200;
+    const noOfWords = body.split(/\s/g).length;
+    const minutes = noOfWords / wordsPerMinute;
+    this.result = Math.ceil(minutes)
+  }
   get authorAccess(){
     const postAuthorId = this.post.author.id
     if(this.currentUser){
@@ -71,17 +81,28 @@ export class SinglePostComponent implements OnInit {post: posts;
   }
 
   deleteThisPost(post: posts) {
-    if (confirm(`Really delete ${post.title}?`)) {
-      this.service.deletePost(post._id).subscribe((data: any) => {
-        if (data) {
-          this.toastr.successToaster(data.message)
-          this.route.navigate(['/posts'])
-        }
-        (error: any) => {
-          console.log(error)
-        }
-      })
-    }
+    swal({
+      title: "Are you sure?",
+      text: `Once deleted, you will not be able to recover ${post.title}`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.service.deletePost(post._id).subscribe((data: any) => {
+          if (data) {
+            this.toastr.successToaster(data.message)
+            this.route.navigate(['/posts'])
+          }
+          (error: any) => {
+            console.log(error)
+          }
+        })
+      } else {
+        swal("Good choice!");
+      }
+    });
   }
 
   saveNewComment(comment: IComments){
