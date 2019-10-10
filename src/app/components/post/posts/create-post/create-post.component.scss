@@ -1,3 +1,36 @@
+:host ::ng-deep md-editor{
+    .md-editor-container {
+        // min-height: 60vh !important;
+        // min-height: calc(60vh - 100px) !important;
+        // padding: 32px 36px;
+        width: 100%;
+        border: none;
+        margin-bottom: 24px;
+        color: #000;
+        background: 0 0;
+
+        .editor-container {
+            .preview-panel {
+                word-break: break-word;
+                // border-left: unset !important;
+                text-align: justify;
+              }
+
+              .ace-tm .ace_print-margin{
+                  width: unset !important
+              }
+
+              .ace-tm .ace_marker-layer .ace_active-line{
+                  background: unset !important
+              }
+
+              .ace_gutter{
+                  display: none;
+              }
+        }
+      }
+}
+
 .progress-bar{
     background-color: rgb(21, 26, 31, 0.4) !important
 }
@@ -126,35 +159,4 @@
         width: 70%;
     }
 }
-:host ::ng-deep md-editor{
-    .md-editor-container {
-        // min-height: 60vh !important;
-        // min-height: calc(60vh - 100px) !important;
-        // padding: 32px 36px;
-        width: 100%;
-        border: none;
-        margin-bottom: 24px;
-        color: #000;
-        background: 0 0;
 
-        .editor-container {
-            .preview-panel {
-                word-break: break-word;
-                // border-left: unset !important;
-                text-align: justify;
-              }
-
-              .ace-tm .ace_print-margin{
-                  width: unset !important
-              }
-
-              .ace-tm .ace_marker-layer .ace_active-line{
-                  background: unset !important
-              }
-
-              .ace_gutter{
-                  display: none;
-              }
-        }
-      }
-}

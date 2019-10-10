@@ -1,25 +1,37 @@
 $padding1rem: 1rem;
 
-
 :host ::ng-deep md-editor{
-    .md-editor-container{
+    .md-editor-container {
+        width: 100%;
         border: none;
+        margin-bottom: 24px;
+        color: #000;
+        background: 0 0;
 
-        .editor-container{
-            .preview-panel{
-                border: none !important;
+        .editor-container {
+            .preview-panel {
+                word-break: break-word;
+                text-align: justify;
+                border-left: unset !important;
+
                 img{
-                    width: 100%
+                    width: 100%;
                 }
-            }
+              }
 
-            .ace-tm{
-                .ace_print-margin{
-                    width: 0px;
-                }
-            }
+              .ace-tm .ace_print-margin{
+                  width: 0px;
+              }
+
+              .ace-tm .ace_marker-layer .ace_active-line{
+                  background: unset !important
+              }
+
+              .ace_gutter{
+                  display: none;
+              }
         }
-    }
+      }
 }
 
 .mb1_5{
@@ -59,6 +71,7 @@ $padding1rem: 1rem;
             a{
                 display: inline-block;
                 background: #66e2d5;
+                text-decoration: none;
                 color: #0a0a0a;
                 padding: 2px 12px 3px;
                 border-radius: 3px;
@@ -232,14 +245,18 @@ mat-chip-list{
         padding-right: 0;
     }
 }
-.profile-pic{
-    width: 28px;
-    height: 28px;
-    border-radius: 50px;
-    display: inline-block;
-    vertical-align: -9px;
-    margin-right: 2px;
-    background: #f5f6f7;
+.author{
+    color: #0a0a0a;
+    text-decoration: none;
+    .profile-pic{
+        width: 28px;
+        height: 28px;
+        border-radius: 50px;
+        display: inline-block;
+        vertical-align: -9px;
+        margin-right: 2px;
+        background: #f5f6f7;
+    }
 }
 @media (min-width: 500px) and (max-width: 767px) {
     .post_wrapper{
