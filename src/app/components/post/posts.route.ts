@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 export const postRoutes: Routes = [
     {path: '', component: AllPostsComponent},
-    {path: 'create', component: CreatePostComponent, canActivate: [AuthGuard]},
+    {path: 'create', component: CreatePostComponent,},
     {path: ':id', component: SinglePostComponent},
     {path: ':id/edit', component: EditPostComponent}
 ]

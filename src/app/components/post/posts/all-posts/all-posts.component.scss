@@ -93,3 +93,68 @@ mat-card{
         height: 20px;
     }
 }
+.post-interactions{
+    margin: auto 0;
+
+    .likesnum{
+        color: #0a0a0a;
+        text-decoration: none;
+        border-radius: 25px;
+        padding: .5rem;
+        background: #f5f6f7;
+        i{
+            font-size: 20px;
+        }
+        .thumb{
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: -9px;
+            margin-right: 2px;
+        }
+        span{
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4d4d4d;
+            display: inline-block;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+    }
+    .commentsnum{
+        color: #0a0a0a;
+        text-decoration: none;
+        border-radius: 25px;
+        padding: .5rem;
+        margin-left:  .5rem;
+        background: #f5f6f7;
+        i{
+            font-size: 20px;
+        }
+        .comment{
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: -9px;
+            margin-right: 2px;
+        }
+        span{
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4d4d4d;
+            display: inline-block;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+    }
+}
+
+mat-chip{
+    font-weight: normal;
+    padding: 5px 7px
+}
+.post_sub{
+    span{
+        margin: 0 .5rem 0 0;
+    }
+}

@@ -14,14 +14,22 @@
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
-                            <a [routerLink]="['/posts', post._id]" fxLayout="row wrap">
-                                    {{post.title}} <small class="align-self-center">{{result[i]}} min read </small>
-                            </a>
+                            <span>
+                                    <a [routerLink]="['/posts', post._id]" fxLayout="row wrap">
+                                        <span>
+                                                {{post.title}}
+                                        </span>
+                                </a>
+                            </span>
                         </mat-card-title>
                         <mat-card-subtitle>
-                            <p>{{post.author.username}}</p>
-                            <p>·</p>
-                            <p>{{post.createdAt | timeAgo}}</p>
+                               <span class="post_sub">
+                            <span>{{post.author.username | titlecase}}</span>
+                            <span>·</span>
+                             <span>{{result[i]}} min read</span>
+                            <span>·</span>
+                            <span>{{post.createdAt | timeAgo}}</span>
+                               </span>
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
@@ -30,16 +38,22 @@
                         </mat-chip-list>
                     </mat-card-content>
                     <mat-card-actions>
-                        <div>
-                            <button mat-button class="like_btn">
-                                <img src="../../../../../assets/thumbs.png" alt="" srcset="">
-                                <span>{{post.meta.likes}}</span>
-                            </button>
-                            <button mat-button class="like_btn">
-                                <img src="../../../../assets/comment.png" alt="">
-                                <span>{{post.comments.length}}</span>
-                            </button>
-                        </div>
+                        <span class="post-interactions">
+                            <span>
+                                    <a href="" class="likesnum">
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                            <!-- <img src="../../../../../assets/thumbs.png" alt="" srcset="" class="thumb"> -->
+                                            <span>{{post.meta.likes}}</span>
+                                    </a>
+                            </span>
+                            <span>
+                                    <a href="" class="commentsnum">
+                                            <i class="fa fa-comments-o"></i>
+                                            <!-- <img src="../../../../assets/comment.png" alt="" class="comment"> -->
+                                            <span>{{post.comments.length}}</span>
+                                    </a>
+                            </span>
+                        </span>
                         <div class="rightbtns">
                             <button mat-button class="actionBtn">
                                 <img src="../../../../../assets/bookmark-white.png" alt="" srcset="">

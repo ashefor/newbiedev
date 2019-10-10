@@ -76,8 +76,12 @@ export class CreatePostComponent implements OnInit {
     this.authservice.currentUser.subscribe((data: any) => {
       if(data){
         this.currentUser = data.user
+      }else{
+        this.currentUser = null;
       }
     })
+    this.initialiseForm()
+    this.title.setTitle('Create Post')
   }
 
   public option: MarkdownOptions = {
@@ -87,8 +91,7 @@ export class CreatePostComponent implements OnInit {
   }
   public height: string = "60vh"
   ngOnInit() {
-    this.initialiseForm()
-    // this.title.setTitle('Create Post')
+    // this.initialiseForm()
   }
 
   initialiseForm() {
@@ -98,7 +101,7 @@ export class CreatePostComponent implements OnInit {
       meta: this.formbuilder.group({
         tags: [this.fruits],
         mediaIds: [''],
-        authorId: [this.currentUser.id? this.currentUser.id: null]
+        authorId: [this.currentUser && this.currentUser.id? this.currentUser.id: null]
       })
     })
   }

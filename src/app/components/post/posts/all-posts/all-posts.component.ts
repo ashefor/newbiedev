@@ -3,6 +3,7 @@ import { posts } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
 import { User } from 'src/app/components/user/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-all-posts',
@@ -14,8 +15,11 @@ export class AllPostsComponent implements OnInit {
   posts: posts[];
   alltags = [];
   result = [];
-  constructor(private service: PostsService, private authservice: AuthService) { 
+  constructor(private service: PostsService, 
+    private authservice: AuthService,
+    private title: Title) { 
     this.currentUser = this.authservice.currentUserValue;
+    this.title.setTitle('Newbie.dev')
   }
 
   ngOnInit() {
