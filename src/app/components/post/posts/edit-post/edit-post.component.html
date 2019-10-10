@@ -1,10 +1,24 @@
-<md-editor name="Content" 
-  [upload]="doUpload" 
-  [preRender]="preRenderFunc" 
-  [(ngModel)]="content" 
-  [height]="'200px'" 
-  [mode]="mode" 
-  [options]="options" 
-  required 
-  maxlength="500">
-</md-editor>
+<div class="section">
+    <div class="wrapper">
+        <form [formGroup]="updateform" (ngSubmit)="updateFrm()">
+            <div class="create-Title">
+                <textarea formControlName="title" placeholder="Title"></textarea>
+            </div>
+            <div class="create-content">
+                <md-editor formControlName="content" [mode]="mode" [options]="option" [height]="height">
+                </md-editor>
+                <a (click)="openThisModal()" mat-raised-button class="btn" role="button">Images</a>
+
+            </div>
+
+         <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" type="submit" [disabled]="updateform.invalid">
+                Create Post
+                <span class="icon is-small" *ngIf="loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </span>
+            </button>
+        </div>
+        </form>
+    </div>
+  </div>
