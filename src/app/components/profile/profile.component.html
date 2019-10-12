@@ -1,1 +1,75 @@
-<p>profile works!</p>
+<div class="container">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" class="profile-head">
+        <div class="profile-pic">
+            <a href="">
+                <img class="profile-pic" src="https://bulma.io/images/placeholders/128x128.png" alt="">
+            </a>
+        </div>
+        <div class="profile-meta">
+            <h1>Author name</h1>
+            <p>Numquam enim incidunt eaque a repudiandae quis fuga impedit in reprehenderit. In quam nobis beatae fugit
+                earum autem odio recusandae, debitis maiores?</p>
+            <div fxLayout="row" class="follows-tab">
+                <div fxLayout="column" class="follows">
+                    <h3>Followers</h3>
+                    <p>1</p>
+                </div>
+                <div fxLayout="column" class="follows">
+                    <h3>Following</h3>
+                    <p>1</p>
+                </div>
+            </div>
+            <button mat-flat-button color="primary">
+                Edit Profile
+            </button>
+        </div>
+    </div>
+    <div class="profile-body" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.gt-sm="32px">
+        <div fxFlex=35% fxFlexOrder.lt-md="2" fxFlexfill>
+            <mat-card class="example-card">
+                <mat-card-title>Info</mat-card-title>
+                <mat-card-content>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima velit corporis eum ut
+                        dignissimos doloribus adipisci exercitationem laboriosam ducimus inventore ratione id rem ipsum
+                        libero, labore, praesentium quae provident aspernatur.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+                <mat-card-title>Tech Stack</mat-card-title>
+                <mat-card-content>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima velit corporis eum ut
+                        dignissimos doloribus adipisci exercitationem laboriosam ducimus inventore ratione id rem ipsum
+                        libero, labore, praesentium quae provident aspernatur.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+                <mat-card-title>Recent Activity</mat-card-title>
+                <mat-card-content>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima velit corporis eum ut
+                        dignissimos doloribus adipisci exercitationem laboriosam ducimus inventore ratione id rem ipsum
+                        libero, labore, praesentium quae provident aspernatur.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxFlex=60% fxFlexOrder.lt-md="1" fxFlexfill>
+            <mat-card class="example-card">
+                <mat-card-title>Something else</mat-card-title>
+                <mat-card-content>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima velit corporis eum ut
+                        dignissimos doloribus adipisci exercitationem laboriosam ducimus inventore ratione id rem ipsum
+                        libero, labore, praesentium quae provident aspernatur.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

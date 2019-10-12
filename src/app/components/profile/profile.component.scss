@@ -1,0 +1,83 @@
+.profile-head{
+    width: 912px;
+    margin: 30px auto;
+    align-items: center;
+    justify-content: center;
+
+    .profile-pic{
+        width: 200px;
+        margin-right: 20px;
+        img{
+            display: block;
+            width: 100%;
+            border-radius: 100%
+        }
+    }
+
+    .profile-meta{
+        width: calc(100% - 200px - 30px);
+        
+        h1{
+            line-height: 1.4;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px
+        }
+
+        .follows-tab{
+
+            .follows{
+                margin-right: 10px;
+                h3{
+                    font-size: 14px;
+                    color: #757575;
+                    margin-bottom: 0
+                }
+                p{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+.mat-card{
+    box-shadow: none;
+    border: 1px solid rgba(0,0,0,.1);
+    
+
+    &:not(:last-of-type){
+        margin-bottom: 15px;
+    }
+}
+@media screen and (max-width: 599px){
+    .profile-head{
+        text-align: center;
+        padding: 8px;
+        .profile-pic{
+            margin: 0;
+        }
+        .profile-meta{
+            width: 100%;
+
+            .follows-tab{
+                justify-content: center;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .profile-head{
+        .profile-pic{
+            width: 120px;
+            margin-right: 10px;
+        }
+        .profile-meta{
+            width: calc(100% - 120px- 10px)
+        }
+    }
+}
+@media screen and (max-width: 959px){
+    .profile-head{
+        width: 100%;
+    }
+}

@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ProfileComponent } from './components/profile/profile.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TokenInterceptorService } from './guards/token-interceptor.service';
 import { ErrorInterceptor } from './guards/errorInterceptor';
@@ -18,7 +17,6 @@ import { ErrorInterceptor } from './guards/errorInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
   ],
   imports: [
     BrowserModule,
