@@ -15,6 +15,7 @@ export class AuthService {
   public currentUSer;
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>
+  redirectUrl: string;
 
   constructor(private http: HttpClient, private toastr: ToastrNotificationService) {
     // this.currentUSer = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';

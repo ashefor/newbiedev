@@ -40,10 +40,13 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data=>{
         if(data){
-          swal('successful')
           this.loading = false
           this.toastr.successToaster("successful login")
-          this.router.navigate(['/posts'])
+          if(this.authservice.redirectUrl){
+            this.router.navigateByUrl(this.authservice.redirectUrl)
+          }else{
+            this.router.navigate(['/posts'])
+          }
         }
       },(error: any)=>{
         this.loading = false
