@@ -12,6 +12,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
 
 
 @NgModule({
@@ -30,7 +36,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NzButtonModule,
+    NzFormModule,
+    NzInputModule,
+    NzCheckboxModule,
+    NzIconModule
   ],
   exports: [
     MatBadgeModule,
@@ -45,7 +56,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NzButtonModule,
+    NzFormModule,
+    NzInputModule,
+    NzCheckboxModule,
+    NzIconModule
   ]
 })
 export class SharedModule { }

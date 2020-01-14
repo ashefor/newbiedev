@@ -10,4 +10,4 @@ export const postRoutes: Routes = [
     { path: 'create', component: CreatePostComponent, canActivate: [AuthGuard] },
     { path: ':id', component: SinglePostComponent },
     { path: ':id/edit', component: EditPostComponent }
-]
+];

@@ -14,43 +14,43 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   public currentUSer;
   private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>
+  public currentUser: Observable<User>;
   redirectUrl: string;
 
   constructor(private http: HttpClient, private toastr: ToastrNotificationService) {
     // this.currentUSer = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')))
-    this.currentUser = this.currentUserSubject.asObservable()
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User{
-    return this.currentUserSubject.value
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
   }
 
-  registerUser(user: User ){
-    return this.http.post<any>(`${environment.usersURL}/register`, user).pipe(map(data=>{
-      if(data && data.token){
-        localStorage.setItem('currentUser', JSON.stringify(user))
-        this.currentUserSubject.next(data)
+  registerUser(user: User ) {
+    return this.http.post<any>(`${environment.usersURL}/register`, user).pipe(map(data => {
+      if (data && data.token) {
+        localStorage.setItem('currentUser', JSON.stringify(data.user));
+        this.currentUserSubject.next(data.user);
       }
-      return data
-    }))
+      return data;
+    }));
   }
 
-  loginUser(email: string, password: string){
+  loginUser(email: string, password: string) {
     return this.http.post<any>(`${environment.usersURL}/login`, {email, password}).pipe(map(user => {
-      if(user && user.token){
-        localStorage.setItem('currentUser', JSON.stringify(user))
-        this.currentUserSubject.next(user)
+      if (user && user.token) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
       }
       return user;
-    }))
+    }));
   }
   logOut() {
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null)
+    this.currentUserSubject.next(null);
   }
   public get isLoggedIn(): boolean {
-    return !!this.currentUSer
+    return !!this.currentUSer;
   }
 }

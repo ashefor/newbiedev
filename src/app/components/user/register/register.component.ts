@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup
-  constructor(private formbuilder: FormBuilder, private authservice: AuthService, private toastr: ToastrNotificationService, private router: Router) { }
+  registerForm: FormGroup;
+  constructor(private formbuilder: FormBuilder,
+              private authservice: AuthService, private toastr: ToastrNotificationService, private router: Router) { }
 
   ngOnInit() {
-    this.initialiseForm()
+    this.initialiseForm();
   }
 
   initialiseForm() {
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
       agree: [false, Validators.required]
     }, {
       updateOn: 'blur'
-    })
+    });
   }
 
   getErrorMessage() {
@@ -47,17 +48,17 @@ export class RegisterComponent implements OnInit {
       return { confirm: true, error: true };
     }
     return {};
-  };
+  }
   register() {
-    this.getErrorMessage()
+    this.getErrorMessage();
     console.log(this.registerForm.value);
     if (this.registerForm && this.registerForm.valid) {
       this.authservice.registerUser(this.registerForm.value).subscribe(data => {
         if (data) {
-          this.toastr.successToaster('Sign up successful')
-          this.router.navigate(['/posts'])
+          this.toastr.successToaster('Sign up successful');
+          this.router.navigate(['/posts']);
         }
-      })
+      });
     }
   }
 }

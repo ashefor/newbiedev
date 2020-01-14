@@ -18,31 +18,31 @@ import { AuthService } from 'src/app/services/auth.service';
         style({transform: 'translateY(-100%)'}),
         animate('0.5s 300ms ease-in')
       ]),
-      transition(':leave',[
+      transition(':leave', [
         animate('0.3s ease-out', style({ transform: 'translateY(100%)' }))
       ])
     ])
   ]
 })
 export class AllCommentsComponent implements OnInit {
-  @Input() comments: IComments[]
+  @Input() comments: IComments[];
   @Input() postId;
   public options: MarkdownOptions = {
     enablePreviewContentClick: true,
-  }
-  public mode: string = 'preview';
-  public height: string = "auto"
+  };
+  public mode = 'preview';
+  public height = 'auto';
   newCommentId: any;
   editCommentId: any;
   commentToEdit: string;
   constructor(private service: PostsService, private dataservice: DataService, private toastr: ToastrNotificationService,
-    private authservice: AuthService) { }
+              private authservice: AuthService) { }
 
   ngOnInit() {
   }
 
-  get isLoggedIn(){
-    return this.authservice.currentUSer
+  get isLoggedIn() {
+    return this.authservice.currentUSer;
   }
   showEditComment(comment_id) {
     this.service.getSingleCommentForUpdate(this.postId, comment_id).subscribe((data: any) => {
@@ -50,26 +50,26 @@ export class AllCommentsComponent implements OnInit {
         this.editCommentId = comment_id;
         this.commentToEdit = data.content;
       }
-    })
+    });
   }
   editComment(editedcomment: IComments) {
     this.service.updateThisComment(this.postId, this.editCommentId, editedcomment.content).subscribe((data: any) => {
       if (data) {
         this.comments = data.comments;
-        this.cancelEditComment()
+        this.cancelEditComment();
       }
-    })
+    });
   }
   showReplyComment(comment_id) {
-    this.newCommentId = this.comments.find(x => x.id = comment_id).id
+    this.newCommentId = this.comments.find(x => x.id = comment_id).id;
   }
   replyComment(reply: IReplies) {
     this.service.postCommentReply(this.postId, this.newCommentId, reply.content).subscribe((data: any) => {
       if (data) {
-        this.comments = data.comments
-        this.cancelAddReply()
+        this.comments = data.comments;
+        this.cancelAddReply();
       }
-    })
+    });
   }
   cancelAddReply() {
     this.newCommentId = null;
@@ -80,9 +80,9 @@ export class AllCommentsComponent implements OnInit {
   deleteThisComment(comment_id) {
     if (confirm('really delete this comment?')) {
       this.service.deleteComment(this.postId, comment_id).subscribe((resp: any) => {
-        this.comments = resp.comments
-        this.toastr.successToaster('Comment deleted successfully')
-      })
+        this.comments = resp.comments;
+        this.toastr.successToaster('Comment deleted successfully');
+      });
     }
   }
 }

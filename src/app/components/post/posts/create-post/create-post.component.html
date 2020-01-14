@@ -1,6 +1,6 @@
 <section>
     <div class="wrapper">
-        <form [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="createPostForm">
             <div class="create-Title">
                 <textarea formControlName="title" placeholder="Title"></textarea>
             </div>
@@ -13,8 +13,7 @@
                     data-target="#exampleModalCenter">
                     Images
                 </button> -->
-                <a (click)="openThisModal()" mat-raised-button class="btn" role="button">Images</a>
-
+                <button nz-button nzSize="large" nzType="default" (click)="openThisModal()">Images</button>
             </div>
             <mat-form-field class="example-chip-list">
                 <mat-chip-list #chipList aria-label="Fruit selection">
@@ -34,14 +33,9 @@
                 </mat-autocomplete>
             </mat-form-field>
 
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <button mat-raised-button type="button" (click)="mode = !mode"><span *ngIf="mode">Preview</span> <span *ngIf="!mode">Edit</span></button>
-                <button mat-raised-button color="primary" type="submit" [disabled]="createPostForm.invalid">
-                    Create Post
-                    <span class="icon is-small" *ngIf="loading">
-                        <i class="fa fa-spinner fa-spin"></i>
-                    </span>
-                </button>
+            <div fxLayout="row" fxLayoutAlign="center center" class="buttongrp">
+                <button nz-button nzSize="large" nzType="default" (click)="mode = !mode">{{mode? 'Preview': 'Edit'}}</button>
+                <button nz-button nzType="primary" nzSize="large" [nzLoading]="loading" type="submit" (click)="onSubmit()">Create Post</button>
             </div>
         </form>
     </div>

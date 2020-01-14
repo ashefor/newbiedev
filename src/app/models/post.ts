@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 export interface posts {
     _id?: string;
     title: string;
@@ -5,28 +6,25 @@ export interface posts {
     author: {
         id: string;
         username: string;
-    }
+    };
     date?: Date;
     comments?: IComments[];
-    media?:any;
+    media?: any;
     meta: {
         likes?: number;
         tags: any;
         mediaIds: any;
-    }
+    };
 
 }
 export interface IComments {
-    id?: string,
+    id?: string;
     content: string;
     date?: Date;
     replies?: IReplies[];
-    likes?: Number;
+    likes?: number;
 }
 export interface IReplies {
-    content: string,
-    date?: Date
-}
-export interface IMedia {
-
+    content: string;
+    date?: Date;
 }

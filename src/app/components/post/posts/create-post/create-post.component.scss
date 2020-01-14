@@ -65,6 +65,15 @@
     .create-content{
         border: 1px solid
     }
+
+    form{
+        .buttongrp{
+            [nz-button] {
+                margin-right: 8px;
+                margin-bottom: 12px;
+            }
+        }
+    }
 }
 .modal{
     .modal-body{

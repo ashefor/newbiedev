@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 
-  
+
   {
-    path: 'posts', loadChildren: ()=> import('./components/post/posts.module').then((m)=>m.PostsModule)
+    path: 'posts', loadChildren: () => import('./components/post/posts.module').then((m) => m.PostsModule)
   },
   {
-    path: 'auth', loadChildren: ()=> import('./components/user/user.module').then((m)=>m.UserModule)
+    path: 'auth', loadChildren: () => import('./components/user/user.module').then((m) => m.UserModule)
   },
-  { path: ':username', loadChildren: ()=> import('./components/profile/profile.module').then((m)=>m.ProfileModule)},
+  { path: ':username', loadChildren: () => import('./components/profile/profile.module').then((m) => m.ProfileModule)},
 ];
 
 @NgModule({

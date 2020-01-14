@@ -15,27 +15,27 @@ export class AllPostsComponent implements OnInit {
   posts: posts[];
   alltags = [];
   result = [];
-  constructor(private service: PostsService, 
-    private authservice: AuthService,
-    private title: Title) { 
+  constructor(private service: PostsService,
+              private authservice: AuthService,
+              private title: Title) {
     this.currentUser = this.authservice.currentUserValue;
-    this.title.setTitle('Newbie.dev')
+    this.title.setTitle('Newbie.dev');
   }
 
   ngOnInit() {
-    this.getAllPosts()
+    this.getAllPosts();
   }
-  getAllPosts(){
-    this.service.getAllPosts().subscribe((data:any)=>{
-      if(data){
+  getAllPosts() {
+    this.service.getAllPosts().subscribe((data: any) => {
+      if (data) {
         this.posts = data;
-        console.log(this.posts)
-        for (let obj of data) {
-          this.readingTime(obj.content)
+        console.log(this.posts);
+        for (const obj of data) {
+          this.readingTime(obj.content);
           this.alltags.push(obj.meta.tags);
         }
       }
-    })
+    });
   }
 
   readingTime(body) {
