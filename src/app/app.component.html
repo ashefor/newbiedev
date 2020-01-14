@@ -38,7 +38,7 @@
             <div class="mt-auto mb-auto d-none d-md-inline" *ngIf="currentUser">
               <span class="mr-2">
                 Welcome <a
-                  routerLink="/{{currentUser? currentUser.username: currentUser.username}}">{{currentUser.user? currentUser.user.username: currentUser.username | titlecase}}</a>
+                  routerLink="/{{currentUser.user? currentUser.user.username: currentUser.username}}">{{currentUser.user? currentUser.user.username: currentUser.username | titlecase}}</a>
               </span>
               <a>
                 <span class="mr-3">

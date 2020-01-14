@@ -9,22 +9,22 @@ import { User } from './components/user/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'zlatan';
-  @ViewChild('navbar', {static: false}) navBar: ElementRef<HTMLElement>
+  @ViewChild('navbar', {static: false}) navBar: ElementRef<HTMLElement>;
   currentUser;
   constructor(private authservice: AuthService, private router: Router) {
-    this.authservice.currentUser.subscribe((data: any) => this.currentUser = data?data.user: null)
-    console.log(this.currentUser)
+    this.authservice.currentUser.subscribe((data: any) => {
+      this.currentUser = data ? data : null;
+    });
   }
   logOut() {
     this.authservice.logOut();
-    this.navBar.nativeElement.classList.remove('show')
-    this.router.navigate(['/auth/login'])
+    this.navBar.nativeElement.classList.remove('show');
+    this.router.navigate(['/auth/login']);
   }
 
-  isActivated(componentRef){
-    if(this.navBar.nativeElement.classList.contains('show')){
-      this.navBar.nativeElement.classList.remove('show')
+  isActivated(componentRef) {
+    if (this.navBar.nativeElement.classList.contains('show')) {
+      this.navBar.nativeElement.classList.remove('show');
     }
   }
 }
