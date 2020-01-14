@@ -1,5 +1,5 @@
 <div id="logreg-forms">
-    <form action="/signup/" class="form-signup" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+    <form nzForm class="form-signup" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Continue with</h1>
         <div class="container">
             <div class="row social-login">
@@ -17,33 +17,85 @@
         </div>
 
         <p style="text-align:center">OR</p>
-        <input type="text" id="user-fullname" class="form-control mb-2" placeholder="Full name" formControlName="name"
-            required>
-        <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
-            formControlName="email" required>
-        <input type="text" id="user-name" class="form-control mb-2" placeholder="choose a username"
-            formControlName="username" required>
-        <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
-            formControlName="password" required>
-        <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password"
-            formControlName="confirmPassword" required>
-
-        <div class="form-check mt-2">
-            <input type="checkbox" formControlName="checked" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#">Terms and
-                    Conditions</a></label>
-        </div>
-        <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
-                *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
-
-        <hr>
-        <!-- Don't have an account! -->
-        <div class="text-center">
-            <span>
-                Already have an account? <a [routerLink]="['/auth/login']">Login here</a>
-            </span>
-        </div>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Full Name!">
+              <input nz-input nzSize="large" id="name" formControlName="name" placeholder="Full Name" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="emailErr">
+              <input nz-input nzSize="large" formControlName="email" id="email" placeholder="Email Address" />
+              <ng-template #emailErr let-emailErr>
+                <ng-container *ngIf="emailErr.hasError('required')">
+                  Please input your Email!
+                </ng-container>
+                <ng-container *ngIf="emailErr.hasError('email')">
+                  Please choose a valid Email!
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your username">
+                <input nz-input nzSize="large" id="username" formControlName="username" placeholder="Username" />
+              </nz-form-control>
+            </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="inputErr">
+              <input
+                nz-input
+                nzSize="large"
+                type="password"
+                id="password"
+                formControlName="password"
+                (ngModelChange)="updateConfirmValidator()"
+                placeholder="Password"
+              />
+              <ng-template #inputErr let-inputErr>
+                <ng-container *ngIf="inputErr.hasError('required')">
+                  Please input your password!
+                </ng-container>
+                <ng-container *ngIf="inputErr.hasError('minlength')">
+                  Please enter at least 6 characters!
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="errorTpl">
+              <input nz-input nzSize="large" 
+              type="password" 
+              formControlName="checkPassword" 
+              id="checkPassword" 
+              placeholder="Repeat Password"/>
+              <ng-template #errorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please confirm your password!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('confirm')">
+                  Two passwords that you enter is inconsistent!
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-row class="register-area">
+            <nz-form-control [nzSpan]="14" [nzOffset]="6">
+              <label nz-checkbox formControlName="agree">
+                <span>I have read the <a>agreement</a></span>
+              </label>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-row class="register-area">
+            <nz-form-control>
+              <button nz-button nzBlock nzType="primary">Register</button>
+            </nz-form-control>
+          </nz-form-item>
+          <hr>
+          <div class="text-center">
+              <span>
+                  Already have an account? <a [routerLink]="['/auth/login']">Login here</a>
+              </span>
+          </div> 
     </form>
-
 
 </div>

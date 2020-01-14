@@ -74,12 +74,26 @@
   a{
     position: absolute;
     right: 15px;
-    top: 10px;
+    top: 4px;
+    font-size: 18px;
     z-index: 99;
     color: black !important;
   }
 }
 
+form{
+  .btn-login{
+    background-color: green;
+    color: white;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+
+  .login-form-button {
+    width: 100%;
+  }
+}
 
 /* Mobile */
 

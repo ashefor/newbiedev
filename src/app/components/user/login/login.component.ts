@@ -16,52 +16,53 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
   loading;
-  checked: boolean = false;
-  constructor(private authservice: AuthService, private formbuilder: FormBuilder, private router: Router, private toastr: ToastrNotificationService) { }
+  checked = false;
+  constructor(private authservice: AuthService,
+              private formbuilder: FormBuilder, private router: Router, private toastr: ToastrNotificationService) { }
 
   ngOnInit() {
-    this.initialiseForm()
+    this.initialiseForm();
   }
   initialiseForm() {
     this.loginForm = this.formbuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+      username: ['', Validators.required],
       password: ['', Validators.required],
-      checked: [this.checked]
-    })
+      remember: [this.checked]
+    });
   }
 
   getErrorMessage() {
-    return this.loginForm.get('username').hasError('required') ? 'You must enter a value' :
-      this.loginForm.get('username').hasError('minlength') ? 'Not a valid email' :
-        '';
+    // tslint:disable-next-line
+    for (const i in this.loginForm.controls) {
+      this.loginForm.controls[i].markAsDirty();
+      this.loginForm.controls[i].updateValueAndValidity();
+    }
   }
   login(formvalue) {
+    this.getErrorMessage();
     if (this.loginForm && this.loginForm.valid) {
       this.loading = true;
-      this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data=>{
-        if(data){
-          this.loading = false
-          this.toastr.successToaster("successful login")
-          if(this.authservice.redirectUrl){
-            this.router.navigateByUrl(this.authservice.redirectUrl)
-          }else{
-            this.router.navigate(['/posts'])
+      this.authservice.loginUser(formvalue.username, formvalue.password).subscribe(data => {
+        if (data) {
+          this.loading = false;
+          if (this.authservice.redirectUrl) {
+            this.router.navigateByUrl(this.authservice.redirectUrl);
+          } else {
+            this.router.navigate(['/posts']);
           }
         }
-      },(error: any)=>{
-        this.loading = false
-      })
+      }, (error: any) => {
+        this.loading = false;
+      });
     } else {
       this.loading = false;
-      this.toastr.errorToaster('please enter a username and/or password')
     }
   }
 
-  keepLoggedIn(e) {
-    this.checked = e.target.checked
+  keepLoggedIn() {
+    this.checked = ! this.checked;
   }
-
-  togglePwd(){
-    this.hide = !this.hide
+  togglePwd() {
+    this.hide = !this.hide;
   }
 }
