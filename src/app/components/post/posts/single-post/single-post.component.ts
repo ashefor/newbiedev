@@ -35,7 +35,7 @@ export class SinglePostComponent implements OnInit {
               private service: PostsService, private toastr: ToastrNotificationService, private route: Router,
               private authservice: AuthService) {
     this.authservice.currentUser.subscribe((data: any) => this.currentUser = data ? data.user : null);
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
    }
 
   ngOnInit() {
@@ -44,6 +44,7 @@ export class SinglePostComponent implements OnInit {
         if (data) {
           this.showpost = true;
           this.post = data;
+          console.log(this.post);
           this.alltags = data.meta.tags;
           this.nooflikes = data.meta.likes;
           this.readingTime(data.content);
@@ -58,6 +59,7 @@ export class SinglePostComponent implements OnInit {
     const minutes = noOfWords / wordsPerMinute;
     this.result = Math.ceil(minutes);
   }
+
   get authorAccess() {
     const postAuthorId = this.post.author.id;
     if (this.currentUser) {

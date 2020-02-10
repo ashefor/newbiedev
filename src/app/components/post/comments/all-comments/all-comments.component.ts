@@ -41,6 +41,20 @@ export class AllCommentsComponent implements OnInit {
   ngOnInit() {
   }
 
+  get authorAccess() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      this.comments.forEach(comment => {
+        const commentAuthorId = comment.id;
+        if (commentAuthorId === currentUser.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    }
+    return false;
+  }
   get isLoggedIn() {
     return this.authservice.currentUSer;
   }
